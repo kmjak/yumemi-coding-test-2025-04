@@ -29,7 +29,7 @@ export default async function getPrefectures(): Promise<Prefecture[] | false> {
 
     // レスポンスがOKでない場合はエラーを表示してfalseを返す
     if (!res.ok) {
-      console.error('Error fetching');
+      console.error(`Error fetching: ${res.status} ${res.statusText}`);
       return false;
     }
 
