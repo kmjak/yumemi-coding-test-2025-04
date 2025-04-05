@@ -36,9 +36,9 @@ export default async function getPrefectures(): Promise<Prefecture[] | false> {
     // レスポンスデータからJSONを取得
     const data: Prefecture[] = await res.json();
 
-    // データが取得できなかった場合もエラーを表示してfalseを返す
-    if (!data) {
-      console.error('No data');
+    // データが配列でなく、もしくは空の配列の場合はエラーを表示してfalseを返す
+    if (!Array.isArray(data) || data.length === 0) {
+      console.error('No valid data or empty data');
       return false;
     }
 
