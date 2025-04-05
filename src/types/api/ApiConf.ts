@@ -1,4 +1,4 @@
 export interface ApiConf {
-  API_END_POINT: string;
+  API_ENDPOINT: string;
   X_API_KEY: string;
 }

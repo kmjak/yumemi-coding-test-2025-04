@@ -1,6 +1,6 @@
 import { ApiConf } from '@/types/api/ApiConf';
 
 export const apiConf: ApiConf = {
-  API_END_POINT: process.env.API_END_POINT || '',
+  API_ENDPOINT: process.env.API_ENDPOINT || '',
   X_API_KEY: process.env.X_API_KEY || '',
 };
