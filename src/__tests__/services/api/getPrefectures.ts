@@ -72,4 +72,16 @@ describe('getPrefectures', () => {
     // レスポンスがfalseであることを確認
     expect(response).toBe(false);
   });
+
+  // テストケース: エラーが発生した場合
+  test('エラーが発生した場合はfalseを返す', async (): Promise<void> => {
+    // モックのfetch関数を定義
+    global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
+
+    // getPrefectures関数を実行
+    const response: Prefecture[] | false = await getPrefectures();
+
+    // レスポンスがfalseであることを確認
+    expect(response).toBe(false);
+  });
 });
