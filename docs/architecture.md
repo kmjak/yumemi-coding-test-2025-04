@@ -1,17 +1,15 @@
-以下は、あなたのプロジェクトのディレクトリ構成をMarkdown形式で整理したものです。各ディレクトリの目的についても簡単に説明を追加しています。
-
 # プロジェクトディレクトリ構成
 
-src
-├── __tests__
-├── app
-├── components
-├── hooks
-├── services
-├── types
-├── usecases
-├── utils
-└── conf
+src/<br>
+├── __tests/<br>
+├── app/<br>
+├── components/<br>
+├── hooks/<br>
+├── services/<br>
+├── types/<br>
+├── usecases/<br>
+├── utils/<br>
+└── conf/
 
 ### 各ディレクトリの説明
 
