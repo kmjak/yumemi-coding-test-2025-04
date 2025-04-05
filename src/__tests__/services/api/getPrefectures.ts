@@ -2,7 +2,9 @@ import getPrefectures from '@/services/api/getPrefectures';
 import { Prefecture } from '@/types/api/Prefecture';
 
 describe('getPrefectures', () => {
-  test('都道府県一覧を取得できる', async () => {
+  // テストケース: 正常系
+  test('都道府県一覧を取得できる', async (): Promise<void> => {
+    // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
       json: async (): Promise<Prefecture[]> => [
@@ -12,7 +14,11 @@ describe('getPrefectures', () => {
         },
       ],
     });
+
+    // getPrefectures関数を実行
     const response = await getPrefectures();
+
+    // fetchで取得したデータが正しいか確認
     expect(response).toEqual([
       {
         prefCode: 1,
