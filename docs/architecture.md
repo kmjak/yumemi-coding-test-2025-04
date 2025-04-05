@@ -3,15 +3,15 @@
 # プロジェクトディレクトリ構成
 
 src
-├── `__tests__`
-├── `app`
-├── `components`
-├── `hooks`
-├── `services`
-├── `types`
-├── `usecases`
-├── `utils`
-└── `conf`
+├── __tests__
+├── app
+├── components
+├── hooks
+├── services
+├── types
+├── usecases
+├── utils
+└── conf
 
 ### 各ディレクトリの説明
 
