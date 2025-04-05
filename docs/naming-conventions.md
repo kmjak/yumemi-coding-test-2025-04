@@ -28,6 +28,13 @@
   - `function getUserInfo(userId, userName) { /* ... */ }`
   - `const handleClick = (event) => { /* ... */ };`
 
+## 設定オブジェクト
+
+- **規則**: キャメルケース
+- **例**:
+  - `const apiConf = { ... };`
+  - `const apiPath = { ... };`
+
 ## コンポーネント
 
 - **規則**: パスカルケース
