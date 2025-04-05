@@ -15,9 +15,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   // タイトル
   title: {
-    // テンプレートタイトル
+    /**
+     * テンプレート用のタイトル
+     * %sはページタイトルに置き換えられます。
+     *
+     * src/app/home/page.tsxのタイトルをHome | 人口変遷ナビ としたい場合
+     * export const metadata: Metadata = {
+     *  title: Home,
+     *};
+     */
     template: '%s | 人口変遷ナビ',
-    // デフォルトタイトル
+    // デフォルトのタイトル
     default: '人口変遷ナビ',
   },
   // このサイトの説明
