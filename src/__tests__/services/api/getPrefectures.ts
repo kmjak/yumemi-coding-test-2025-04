@@ -84,4 +84,9 @@ describe('getPrefectures', () => {
     // レスポンスがfalseであることを確認
     expect(response).toBe(false);
   });
+
+  // テスト後にfetchをリセット
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
 });
