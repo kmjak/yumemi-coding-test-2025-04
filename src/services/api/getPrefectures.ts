@@ -44,9 +44,14 @@ export default async function getPrefectures(): Promise<Prefecture[] | false> {
 
     // データが取得できた場合はそのまま返す
     return data;
-  } catch {
-    // エラーが発生した場合はエラーを表示してfalseを返す
-    console.error('Error fetching prefectures');
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      // エラーがError型の場合はエラーメッセージを表示
+      console.error('Error fetching prefectures:', error.message);
+    } else {
+      // それ以外のエラーの場合は「Unknown error occurred」を表示
+      console.error('Unknown error occurred');
+    }
     return false;
   }
 }
