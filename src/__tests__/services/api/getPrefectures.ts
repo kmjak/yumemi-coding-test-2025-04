@@ -45,6 +45,19 @@ describe('getPrefectures', () => {
     expect(response).toBe(false);
   });
 
+  // テストケース: レスポンスデータにresultがない場合
+  test('レスポンスデータにresultがない場合はfalseを返す', async (): Promise<void> => {
+    // モックのfetch関数を定義
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async (): Promise<unknown> => ({ message: 'No result' }),
+    });
+    // getPrefectures関数を実行
+    const response: Prefecture[] | false = await getPrefectures();
+    // レスポンスがfalseであることを確認
+    expect(response).toBe(false);
+  });
+
   // テストケース: レスポンスデータが配列でない場合
   test('レスポンスデータが配列でない場合はfalseを返す', async (): Promise<void> => {
     // モックのfetch関数を定義
