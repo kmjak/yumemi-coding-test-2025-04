@@ -10,8 +10,10 @@ import { Prefecture } from '@/types/api/Prefecture';
  */
 export default async function getPrefectures(): Promise<Prefecture[] | false> {
   try {
-    // APIの都道府県一覧から取得するURL
-    const url: string = `${apiConf.API_ENDPOINT}${apiPath.PREFECTURES}`;
+    // APIの設定を取得
+    const { API_ENDPOINT, X_API_KEY } = apiConf;
+    // 都道府県一覧を取得するURL
+    const url: string = `${API_ENDPOINT}${apiPath.PREFECTURES}`;
 
     // APIの都道府県一覧を取得する
     const res = await fetch(url, {
@@ -23,7 +25,7 @@ export default async function getPrefectures(): Promise<Prefecture[] | false> {
       headers: {
         'Content-Type': 'application/json',
         // X-API-KEYは環境変数から取得
-        'X-API-KEY': apiConf.X_API_KEY,
+        'X-API-KEY': X_API_KEY,
       },
     });
 
