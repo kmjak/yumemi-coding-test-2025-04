@@ -19,8 +19,8 @@ export default async function getPrefectures(): Promise<Prefecture[] | false> {
     const res = await fetch(url, {
       // メソッドはGET
       method: 'GET',
-      // キャッシュはno-store
-      cache: 'no-store',
+      // 都道府県一覧は基本的に変わることがないのでキャッシュを使用
+      cache: 'force-cache',
       // リクエストヘッダーにContent-TypeとX-API-KEYを設定
       headers: {
         'Content-Type': 'application/json',
