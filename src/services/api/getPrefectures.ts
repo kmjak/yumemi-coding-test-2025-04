@@ -35,18 +35,27 @@ export default async function getPrefectures(): Promise<Prefecture[] | false> {
       return false;
     }
 
-    // レスポンスデータから都道府県一覧を取得
-    const { result }: { result: Prefecture[] } = await res.json();
+    // レスポンスの中にからjsonデータを取得
+    const jsonData = await res.json();
+
+    // jsonDataの中にresultがない場合はエラーを表示してfalseを返す
+    if (!jsonData.result) {
+      console.error('No result in response');
+      return false;
+    }
+
+    // jsonDataの中にresultがある場合は、resultを取得
+    const data: Prefecture[] = jsonData.result;
     // console.log(data);
 
     // データが配列でなく、もしくは空の配列の場合はエラーを表示してfalseを返す
-    if (!Array.isArray(result) || result.length === 0) {
+    if (!Array.isArray(data) || data.length === 0) {
       console.error('No valid data or empty data');
       return false;
     }
 
     // データが取得できた場合はそのまま返す
-    return result;
+    return data;
   } catch (error: unknown) {
     if (error instanceof Error) {
       // エラーがError型の場合はエラーメッセージを表示
