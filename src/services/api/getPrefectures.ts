@@ -10,8 +10,10 @@ import { Prefecture } from '@/types/api/Prefecture';
  */
 export default async function getPrefectures(): Promise<Prefecture[] | false> {
   try {
-    // APIの都道府県一覧から取得するURL
-    const url: string = `${apiConf.API_ENDPOINT}${apiPath.PREFECTURES}`;
+    // APIの設定を取得
+    const { API_ENDPOINT, X_API_KEY } = apiConf;
+    // 都道府県一覧を取得するURL
+    const url: string = `${API_ENDPOINT}${apiPath.PREFECTURES}`;
 
     // APIの都道府県一覧を取得する
     const res = await fetch(url, {
@@ -23,7 +25,7 @@ export default async function getPrefectures(): Promise<Prefecture[] | false> {
       headers: {
         'Content-Type': 'application/json',
         // X-API-KEYは環境変数から取得
-        'X-API-KEY': apiConf.X_API_KEY,
+        'X-API-KEY': X_API_KEY,
       },
     });
 
@@ -33,8 +35,18 @@ export default async function getPrefectures(): Promise<Prefecture[] | false> {
       return false;
     }
 
-    // レスポンスデータからJSONを取得
-    const data: Prefecture[] = await res.json();
+    // レスポンスからjsonデータを取得
+    const jsonData = await res.json();
+
+    // jsonDataの中にresultがない場合はエラーを表示してfalseを返す
+    if (!jsonData.result) {
+      console.error('No result in response');
+      return false;
+    }
+
+    // jsonDataの中にresultがある場合は、resultを取得
+    const data: Prefecture[] = jsonData.result;
+    // console.log(data);
 
     // データが配列でなく、もしくは空の配列の場合はエラーを表示してfalseを返す
     if (!Array.isArray(data) || data.length === 0) {
