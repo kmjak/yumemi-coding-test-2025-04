@@ -7,18 +7,20 @@ describe('getPrefectures', () => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      json: async (): Promise<Prefecture[]> => [
-        {
-          prefCode: 1,
-          prefName: '北海道',
-        },
-      ],
+      json: async (): Promise<{ result: Prefecture[] }> => ({
+        result: [
+          {
+            prefCode: 1,
+            prefName: '北海道',
+          },
+        ],
+      }),
     });
 
     // getPrefectures関数を実行
     const response: Prefecture[] | false = await getPrefectures();
 
-    // fetchで取得したデータが正しいか確認
+    // getPrefectures関数の期待する戻り値と一致するか確認
     expect(response).toEqual([
       {
         prefCode: 1,
