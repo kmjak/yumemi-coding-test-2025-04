@@ -35,7 +35,7 @@ export default async function getPrefectures(): Promise<Prefecture[] | false> {
       return false;
     }
 
-    // レスポンスの中にからjsonデータを取得
+    // レスポンスからjsonデータを取得
     const jsonData = await res.json();
 
     // jsonDataの中にresultがない場合はエラーを表示してfalseを返す
