@@ -1,4 +1,4 @@
-import { YearlyPopulationData } from '@/types/api/YearlyPopulationData';
+import { YearlyPopulationData } from '@/types/api/models/populationComposition/YearlyPopulationData';
 
 /**
  * 人口構成のカテゴリごとのデータ構造

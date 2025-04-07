@@ -1,5 +1,5 @@
-import getPrefectures from '@/services/api/getPrefectures';
-import { Prefecture } from '@/types/api/Prefecture';
+import getPrefectures from '@/services/api/prefecture/getPrefectures';
+import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 
 describe('getPrefectures', () => {
   // 元のfetchを保存する変数

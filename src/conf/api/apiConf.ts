@@ -1,4 +1,4 @@
-import { ApiConf } from '@/types/api/ApiConf';
+import { ApiConf } from '@/types/api/conf/ApiConf';
 
 export const apiConf: ApiConf = {
   // APIのエンドポイント

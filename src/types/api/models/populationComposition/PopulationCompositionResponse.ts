@@ -1,4 +1,4 @@
-import { PopulationComposition } from '@/types/api/PopulationComposition';
+import { PopulationComposition } from '@/types/api/models/populationComposition/PopulationComposition';
 
 /**
  * getPopulationCompositionのレスポンスのデータ構造
