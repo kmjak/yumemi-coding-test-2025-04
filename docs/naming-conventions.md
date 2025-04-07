@@ -39,7 +39,7 @@
 
 - **規則**: パスカルケース
 - **例**:
-  - `const UserProfile = () => { /* JSX content */ };`
+  - `function UserProfile() { /* JSX content */ };`
   - `const Header = () => { /* JSX content */ };`
 
 ## 型定義
