@@ -2,8 +2,8 @@
 
 import { apiConf } from '@/conf/api/apiConf';
 import { apiPath } from '@/conf/api/apiPath';
-import { ApiConf } from '@/types/api/ApiConf';
-import { PopulationCompositionResponse } from '@/types/api/PopulationCompositionResponse';
+import { ApiConf } from '@/types/api/conf/ApiConf';
+import { PopulationCompositionResponse } from '@/types/api/models/populationComposition/PopulationCompositionResponse';
 
 /**
  * 指定した都道府県の人口構成を取得する関数

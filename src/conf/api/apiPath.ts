@@ -1,4 +1,4 @@
-import { ApiPath } from '@/types/api/ApiPath';
+import { ApiPath } from '@/types/api/conf/ApiPath';
 
 export const apiPath: ApiPath = {
   // APIから都道府県一覧を取得するパス

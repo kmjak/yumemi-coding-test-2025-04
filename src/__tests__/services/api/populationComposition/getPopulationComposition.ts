@@ -1,5 +1,5 @@
 import getPopulationComposition from '@/services/api/populationComposition/getPopulationComposition';
-import { PopulationCompositionResponse } from '@/types/api/PopulationCompositionResponse';
+import { PopulationCompositionResponse } from '@/types/api/models/populationComposition/PopulationCompositionResponse';
 
 describe('getPopulationComposition', () => {
   // 元のfetchを保存する変数
