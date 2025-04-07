@@ -2,14 +2,23 @@ import getPopulationComposition from '@/services/api/getPopulationComposition';
 import { PopulationCompositionResponse } from '@/types/api/PopulationCompositionResponse';
 
 describe('getPopulationComposition', () => {
+  // 元のfetchを保存する変数
+  let originalFetch: typeof global.fetch;
+
   // 各テストの前に実行するsetup
   beforeEach(() => {
-    global.fetch = jest.fn(); // モックのfetchをリセット
+    // 元のfetchを保存
+    originalFetch = global.fetch;
+    // モックのfetchをリセット
+    global.fetch = jest.fn();
   });
 
   // 各テストの後に実行するcleanup
   afterEach(() => {
-    jest.clearAllMocks(); // モックの状態をクリア
+    // テスト後に元のfetchに戻す
+    global.fetch = originalFetch;
+    // モックのfetchをクリア
+    jest.clearAllMocks();
   });
 
   // テストケース: 正常系
@@ -65,7 +74,7 @@ describe('getPopulationComposition', () => {
     });
   });
 
-  // テストケース: fetchのURLが正しいか確認
+  // テストケース: fetchのURLとメソッド正しいか確認
   test('fetchが正しいURLとヘッダーで呼ばれているか確認', async () => {
     const mockFetch = jest.fn().mockResolvedValue({
       ok: true,
@@ -101,6 +110,8 @@ describe('getPopulationComposition', () => {
         headers: expect.objectContaining({
           'X-API-KEY': expect.any(String),
         }),
+        // GETメソッドかどうか
+        method: 'GET',
       })
     );
 
