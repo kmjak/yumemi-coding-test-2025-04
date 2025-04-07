@@ -1,4 +1,4 @@
-import getPrefectures from '@/services/api/prefecture/getPrefectures';
+import getPrefectures from '@/services/api/prefecture/fetchPrefectures';
 import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 
 describe('getPrefectures', () => {
