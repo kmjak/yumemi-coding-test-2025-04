@@ -2,6 +2,16 @@ import getPopulationComposition from '@/services/api/getPopulationComposition';
 import { PopulationCompositionResponse } from '@/types/api/PopulationCompositionResponse';
 
 describe('getPopulationComposition', () => {
+  // 各テストの前に実行するsetup
+  beforeEach(() => {
+    global.fetch = jest.fn(); // モックのfetchをリセット
+  });
+
+  // 各テストの後に実行するcleanup
+  afterEach(() => {
+    jest.clearAllMocks(); // モックの状態をクリア
+  });
+
   // テストケース: 正常系
   test('人口構成を取得できる', async (): Promise<void> => {
     // モックのfetch関数を定義
