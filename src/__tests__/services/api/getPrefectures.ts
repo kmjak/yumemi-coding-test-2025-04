@@ -2,6 +2,25 @@ import getPrefectures from '@/services/api/getPrefectures';
 import { Prefecture } from '@/types/api/Prefecture';
 
 describe('getPrefectures', () => {
+  // 元のfetchを保存する変数
+  let originalFetch: typeof global.fetch;
+
+  // 各テストの前に実行するsetup
+  beforeEach(() => {
+    // 元のfetchを保存
+    originalFetch = global.fetch;
+    // モックのfetchをリセット
+    global.fetch = jest.fn();
+  });
+
+  // 各テストの後に実行するcleanup
+  afterEach(() => {
+    // テスト後に元のfetchに戻す
+    global.fetch = originalFetch;
+    // モックのfetchをクリア
+    jest.clearAllMocks();
+  });
+
   // テストケース: 正常系
   test('都道府県一覧を取得できる', async (): Promise<void> => {
     // モックのfetch関数を定義
@@ -98,10 +117,5 @@ describe('getPrefectures', () => {
 
     // レスポンスがfalseであることを確認
     expect(response).toBe(false);
-  });
-
-  // テスト後にfetchをリセット
-  afterEach(() => {
-    jest.restoreAllMocks();
   });
 });
