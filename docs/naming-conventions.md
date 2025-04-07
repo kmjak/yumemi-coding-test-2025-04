@@ -46,5 +46,5 @@
 
 - **規則**: パスカルケース
 - **例**:
-  - `interface UserProfile = { name: string; age: number; };`
-  - `interface ProductDetails = { id: number; title: string; price: number; };`
+  - `interface UserProfile { name: string; age: number; };`
+  - `interface ProductDetails { id: number; title: string; price: number; };`
