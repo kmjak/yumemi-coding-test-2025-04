@@ -1,7 +1,7 @@
-import getPrefectures from '@/services/api/prefecture/getPrefectures';
+import fetchPrefectures from '@/services/api/prefecture/fetchPrefectures';
 import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 
-describe('getPrefectures', () => {
+describe('fetchPrefectures', () => {
   // 元のfetchを保存する変数
   let originalFetch: typeof global.fetch;
 
@@ -36,10 +36,10 @@ describe('getPrefectures', () => {
       }),
     });
 
-    // getPrefectures関数を実行
-    const response: Prefecture[] | false = await getPrefectures();
+    // fetchPrefectures関数を実行
+    const response: Prefecture[] | false = await fetchPrefectures();
 
-    // getPrefectures関数の期待する戻り値と一致するか確認
+    // fetchPrefectures関数の期待する戻り値と一致するか確認
     expect(response).toEqual([
       {
         prefCode: 1,
@@ -57,8 +57,8 @@ describe('getPrefectures', () => {
       statusText: 'Internal Server Error',
     });
 
-    // getPrefectures関数を実行
-    const response: Prefecture[] | false = await getPrefectures();
+    // fetchPrefectures関数を実行
+    const response: Prefecture[] | false = await fetchPrefectures();
 
     // レスポンスがfalseであることを確認
     expect(response).toBe(false);
@@ -71,8 +71,8 @@ describe('getPrefectures', () => {
       ok: true,
       json: async (): Promise<unknown> => ({ message: 'No result' }),
     });
-    // getPrefectures関数を実行
-    const response: Prefecture[] | false = await getPrefectures();
+    // fetchPrefectures関数を実行
+    const response: Prefecture[] | false = await fetchPrefectures();
     // レスポンスがfalseであることを確認
     expect(response).toBe(false);
   });
@@ -85,8 +85,8 @@ describe('getPrefectures', () => {
       json: async (): Promise<unknown> => ({ message: 'Invalid data' }),
     });
 
-    // getPrefectures関数を実行
-    const response: Prefecture[] | false = await getPrefectures();
+    // fetchPrefectures関数を実行
+    const response: Prefecture[] | false = await fetchPrefectures();
 
     // レスポンスがfalseであることを確認
     expect(response).toBe(false);
@@ -100,8 +100,8 @@ describe('getPrefectures', () => {
       json: async (): Promise<Prefecture[]> => [],
     });
 
-    // getPrefectures関数を実行
-    const response: Prefecture[] | false = await getPrefectures();
+    // fetchPrefectures関数を実行
+    const response: Prefecture[] | false = await fetchPrefectures();
 
     // レスポンスがfalseであることを確認
     expect(response).toBe(false);
@@ -112,8 +112,8 @@ describe('getPrefectures', () => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
 
-    // getPrefectures関数を実行
-    const response: Prefecture[] | false = await getPrefectures();
+    // fetchPrefectures関数を実行
+    const response: Prefecture[] | false = await fetchPrefectures();
 
     // レスポンスがfalseであることを確認
     expect(response).toBe(false);

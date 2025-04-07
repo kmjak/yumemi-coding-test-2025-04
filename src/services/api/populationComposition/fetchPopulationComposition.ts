@@ -10,7 +10,7 @@ import { PopulationCompositionResponse } from '@/types/api/models/populationComp
  * @param prefCode 都道府県コード
  * @returns 人口構成のデータまたはfalse
  */
-export default async function getPopulationComposition({
+export default async function fetchPopulationComposition({
   prefCode,
 }: {
   prefCode: number;
