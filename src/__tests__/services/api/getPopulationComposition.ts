@@ -103,6 +103,9 @@ describe('getPopulationComposition', () => {
         }),
       })
     );
+
+    // fetchが1回だけ呼ばれているか
+    expect(mockFetch).toHaveBeenCalledTimes(1);
   });
 
   // テストケース: レスポンスがOKでない場合
