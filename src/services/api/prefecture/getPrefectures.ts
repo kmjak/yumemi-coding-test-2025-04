@@ -2,7 +2,7 @@
 
 import { apiConf } from '@/conf/api/apiConf';
 import { apiPath } from '@/conf/api/apiPath';
-import { Prefecture } from '@/types/api/models/prefectures/Prefecture';
+import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 
 /**
  * 都道府県一覧を取得する関数
