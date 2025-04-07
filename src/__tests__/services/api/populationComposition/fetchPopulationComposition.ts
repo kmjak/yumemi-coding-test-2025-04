@@ -1,7 +1,7 @@
-import getPopulationComposition from '@/services/api/populationComposition/fetchPopulationComposition';
+import fetchPopulationComposition from '@/services/api/populationComposition/fetchPopulationComposition';
 import { PopulationCompositionResponse } from '@/types/api/models/populationComposition/PopulationCompositionResponse';
 
-describe('getPopulationComposition', () => {
+describe('fetchPopulationComposition', () => {
   // 元のfetchを保存する変数
   let originalFetch: typeof global.fetch;
 
@@ -48,12 +48,12 @@ describe('getPopulationComposition', () => {
       }),
     });
 
-    // getPopulationComposition関数を実行
-    const response: PopulationCompositionResponse | false = await getPopulationComposition({
+    // fetchPopulationComposition関数を実行
+    const response: PopulationCompositionResponse | false = await fetchPopulationComposition({
       prefCode: 1,
     });
 
-    // getPopulationComposition関数の期待する戻り値と一致するか確認
+    // fetchPopulationComposition関数の期待する戻り値と一致するか確認
     expect(response).toEqual({
       boundaryYear: 2020,
       data: [
@@ -101,7 +101,7 @@ describe('getPopulationComposition', () => {
     });
     global.fetch = mockFetch;
 
-    await getPopulationComposition({ prefCode: 1 });
+    await fetchPopulationComposition({ prefCode: 1 });
 
     // 正しいURLでfetchが呼ばれているか
     expect(mockFetch).toHaveBeenCalledWith(
@@ -128,8 +128,8 @@ describe('getPopulationComposition', () => {
       statusText: 'Internal Server Error',
     });
 
-    // getPopulationComposition関数を実行
-    const response: PopulationCompositionResponse | false = await getPopulationComposition({
+    // fetchPopulationComposition関数を実行
+    const response: PopulationCompositionResponse | false = await fetchPopulationComposition({
       prefCode: 1,
     });
 
@@ -145,8 +145,8 @@ describe('getPopulationComposition', () => {
       json: async (): Promise<unknown> => ({ message: 'No result' }),
     });
 
-    // getPopulationComposition関数を実行
-    const response: PopulationCompositionResponse | false = await getPopulationComposition({
+    // fetchPopulationComposition関数を実行
+    const response: PopulationCompositionResponse | false = await fetchPopulationComposition({
       prefCode: 1,
     });
 
@@ -159,8 +159,8 @@ describe('getPopulationComposition', () => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
 
-    // getPopulationComposition関数を実行
-    const response: PopulationCompositionResponse | false = await getPopulationComposition({
+    // fetchPopulationComposition関数を実行
+    const response: PopulationCompositionResponse | false = await fetchPopulationComposition({
       prefCode: 1,
     });
 
