@@ -1,4 +1,4 @@
-import getPopulationComposition from '@/services/api/getPopulationComposition';
+import getPopulationComposition from '@/services/api/populationComposition/getPopulationComposition';
 import { PopulationCompositionResponse } from '@/types/api/PopulationCompositionResponse';
 
 describe('getPopulationComposition', () => {
