@@ -41,7 +41,7 @@ export default async function fetchPopulationCompByPrefCode({
       },
     });
 
-    // レスポンスがOKでない場合はエラーを表示してfalseを返す
+    // レスポンスがOKでない場合は「Error Fetching: ...」とエラーを投げる
     if (!response.ok) {
       throw new Error(`Error fetching: ${response.status} ${response.statusText}`);
     }
@@ -49,7 +49,7 @@ export default async function fetchPopulationCompByPrefCode({
     // レスポンスからjsonデータを取得
     const responseJson = await response.json();
 
-    // responseJsonの中にresultがない場合はエラーを表示してfalseを返す
+    // responseJsonの中にresultがない場合「No result in response」とエラーを投げる
     if (!('result' in responseJson)) {
       throw new Error('No result in response');
     }
