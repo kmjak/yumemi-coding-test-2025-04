@@ -172,7 +172,7 @@ describe('fetchPopulationCompByPrefCode', () => {
       statusText: 'Internal Server Error',
     });
 
-    // fetchPrefectures関数を実行してエラーをキャッチ
+    // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
     await expect(fetchPopulationCompByPrefCode({ prefCode: 1 })).rejects.toThrow(
       'Error fetching: 500 Internal Server Error'
     );
@@ -191,7 +191,7 @@ describe('fetchPopulationCompByPrefCode', () => {
       json: async (): Promise<unknown> => ({ message: 'No result' }),
     });
 
-    // fetchPrefectures関数を実行してエラーをキャッチ
+    // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
     await expect(fetchPopulationCompByPrefCode({ prefCode: 1 })).rejects.toThrow(
       'No result in response'
     );
