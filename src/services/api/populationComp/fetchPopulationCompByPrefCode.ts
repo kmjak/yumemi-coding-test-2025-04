@@ -8,7 +8,7 @@ import { PopulationCompResponse } from '@/types/api/models/populationComp/Popula
 /**
  * 指定した都道府県の人口構成を取得する関数
  * @param prefCode 都道府県コード
- * @returns 人口構成のデータ
+ * @return 人口構成のデータ
  *
  * @author @kmjak
  */
