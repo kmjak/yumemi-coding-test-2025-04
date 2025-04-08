@@ -52,6 +52,11 @@ export default async function fetchPrefectures(): Promise<Prefecture[]> {
     // responseJsonの中にresultがある場合は、resultを取得
     const prefectures: Prefecture[] = responseJson.result;
 
+    // responseJson.result が配列であるか確認
+    if (!Array.isArray(prefectures)) {
+      throw new Error('Prefectures must be an array');
+    }
+
     // prefecturesが空の配列の場合はエラーを投げる
     if (prefectures.length === 0) {
       throw new Error('Empty data');

@@ -103,6 +103,25 @@ describe('fetchPrefectures', () => {
   });
 
   /**
+   * レスポンスデータのresultが配列でない場合はエラーを投げる
+   *
+   * @expect
+   * Prefectures must be an array
+   */
+  test('レスポンスデータのresultが配列でない場合「Prefectures must be an array」とエラーを投げる', async (): Promise<void> => {
+    // モックのfetch関数を定義
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async (): Promise<{ result: { message: string } }> => ({
+        result: { message: 'Hello, World' },
+      }),
+    });
+
+    // fetchPrefectures関数を実行してエラーをキャッチ
+    await expect(fetchPrefectures()).rejects.toThrow('Prefectures must be an array');
+  });
+
+  /**
    * レスポンスデータが空の配列の場合はエラーを投げる
    *
    * @expect
