@@ -6,7 +6,7 @@ import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 
 /**
  * 都道府県一覧を取得する関数
- * @returns {Promise<Prefecture[]>} 都道府県一覧の配列
+ * @return {Promise<Prefecture[]>} 都道府県一覧の配列
  *
  * @author @kmjak
  */
