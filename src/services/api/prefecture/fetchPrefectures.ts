@@ -8,45 +8,49 @@ import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
  * 都道府県一覧を取得する関数
  * @returns {Promise<Prefecture[] | false>} 都道府県一覧の配列またはfalse
  */
+
 export default async function getPrefectures(): Promise<Prefecture[] | false> {
   try {
     // APIの設定を取得
     const { API_ENDPOINT, X_API_KEY } = apiConf;
+
     // 都道府県一覧を取得するURL
-    const url: string = `${API_ENDPOINT}${apiPath.PREFECTURES}`;
+    const apiUrl: string = `${API_ENDPOINT}${apiPath.PREFECTURES}`;
 
     // APIの都道府県一覧を取得する
-    const res = await fetch(url, {
+    const response = await fetch(apiUrl, {
       // メソッドはGET
       method: 'GET',
+
       // 都道府県一覧は基本的に変わることがないのでキャッシュを使用
       cache: 'force-cache',
+
       // リクエストヘッダーにContent-TypeとX-API-KEYを設定
       headers: {
         'Content-Type': 'application/json',
+
         // X-API-KEYは環境変数から取得
         'X-API-KEY': X_API_KEY,
       },
     });
 
     // レスポンスがOKでない場合はエラーを表示してfalseを返す
-    if (!res.ok) {
-      console.error(`Error fetching: ${res.status} ${res.statusText}`);
+    if (!response.ok) {
+      console.error(`Error fetching: ${response.status} ${response.statusText}`);
       return false;
     }
 
     // レスポンスからjsonデータを取得
-    const jsonData = await res.json();
+    const responseJson = await response.json();
 
-    // jsonDataの中にresultがない場合はエラーを表示してfalseを返す
-    if (!jsonData.result) {
+    // responseJsonの中にresultがない場合はエラーを表示してfalseを返す
+    if (!responseJson.result) {
       console.error('No result in response');
       return false;
     }
 
-    // jsonDataの中にresultがある場合は、resultを取得
-    const data: Prefecture[] = jsonData.result;
-    // console.log(data);
+    // responseJsonの中にresultがある場合は、resultを取得
+    const data: Prefecture[] = responseJson.result;
 
     // データが配列でなく、もしくは空の配列の場合はエラーを表示してfalseを返す
     if (!Array.isArray(data) || data.length === 0) {
