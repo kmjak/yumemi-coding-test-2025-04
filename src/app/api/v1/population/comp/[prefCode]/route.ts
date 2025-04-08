@@ -12,9 +12,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest, { params }: { params: { prefCode: string } }) {
   try {
-    // URLから文字列型のprefCodeを取得(await がないとエラーになる)
-    const { prefCode: prefCodeString } = await params;
-
+    // URLから文字列型のprefCodeを取得
+    const { prefCode: prefCodeString } = params;
     // 文字列のprefCodeを数値に変換
     const prefCode = Math.trunc(Number(prefCodeString));
 
