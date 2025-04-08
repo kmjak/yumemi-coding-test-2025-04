@@ -14,13 +14,7 @@ import { NextResponse } from 'next/server';
 export async function GET(): Promise<NextResponse> {
   try {
     // fetchPrefectures関数を呼び出して都道府県一覧を取得
-    const prefectures: Prefecture[] | false = await fetchPrefectures();
-
-    // 都道府県一覧の取得したときにprefecturesがfalseの場合はエラーを表示
-    if (prefectures === false) {
-      throw new Error('都道府県一覧の取得に失敗しました。');
-    }
-
+    const prefectures: Prefecture[] = await fetchPrefectures();
     // 都道府県一覧を取得できた場合は、NextResponse.jsonでレスポンスを返す
     return NextResponse.json(prefectures);
   } catch (error) {
