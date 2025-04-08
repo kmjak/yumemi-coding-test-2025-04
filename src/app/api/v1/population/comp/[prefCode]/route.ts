@@ -16,7 +16,8 @@ export async function GET(request: NextRequest, { params }: { params: { prefCode
     const { prefCode: prefCodeString } = await params;
 
     // 文字列のprefCodeを数値に変換
-    const prefCode = Number(prefCodeString);
+    const prefCode = Math.trunc(Number(prefCodeString));
+
     // NaNチェックを追加
     if (isNaN(prefCode)) {
       return NextResponse.json(
