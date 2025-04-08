@@ -45,16 +45,16 @@ export default async function fetchPrefectures(): Promise<Prefecture[]> {
     const responseJson = await response.json();
 
     // responseJsonの中にresultがない場合はエラーを投げる
-    if (!responseJson.result) {
+    if (!('result' in responseJson)) {
       throw new Error('No result in response');
     }
 
     // responseJsonの中にresultがある場合は、resultを取得
     const prefectures: Prefecture[] = responseJson.result;
 
-    // prefecturesが配列でない、もしくは空の配列の場合はエラーを投げる
-    if (!Array.isArray(prefectures) || prefectures.length === 0) {
-      throw new Error('No valid data or empty data');
+    // prefecturesが空の配列の場合はエラーを投げる
+    if (prefectures.length === 0) {
+      throw new Error('Empty data');
     }
 
     // データが取得できた場合はそのまま返す

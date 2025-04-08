@@ -1,6 +1,12 @@
 import fetchPrefectures from '@/services/api/prefecture/fetchPrefectures';
 import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 
+/**
+ * テストケース: fetchPrefectures
+ * 都道府県一覧を取得する関数のテスト
+ *
+ * @author @kmjak
+ */
 describe('fetchPrefectures', () => {
   // 元のfetchを保存する変数
   let originalFetch: typeof global.fetch;
@@ -21,7 +27,18 @@ describe('fetchPrefectures', () => {
     jest.clearAllMocks();
   });
 
-  // テストケース: 正常系
+  /**
+   * テストケース: 正常系
+   * 都道府県一覧を取得できる
+   *
+   * @expect
+   * result : [
+   *   {
+   *     prefCode: 1,
+   *     prefName: '北海道',
+   *   }
+   * ]
+   */
   test('都道府県一覧を取得できる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
@@ -48,7 +65,14 @@ describe('fetchPrefectures', () => {
     ]);
   });
 
-  // テストケース: レスポンスがOKでない場合「Error fetching:...」とエラーを投げる
+  /**
+   * レスポンスがOKでない場合はエラーを投げる
+   * 基本的にError fetching:...の形式でエラーを投げる
+   * 今回は500 Internal Server Errorを想定
+   *
+   * @expect
+   * Error fetching: 500 Internal Server Error
+   */
   test('レスポンスがOKでない場合「Error fetching:...」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
@@ -61,32 +85,30 @@ describe('fetchPrefectures', () => {
     await expect(fetchPrefectures()).rejects.toThrow('Error fetching: 500 Internal Server Error');
   });
 
-  // テストケース: レスポンスデータにresultがない場合「No result in response」とエラーを投げる
+  /**
+   * レスポンスデータにresultがない場合はエラーを投げる
+   *
+   * @expect
+   * No result in response
+   */
   test('レスポンスデータにresultがない場合「No result in response」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      json: async (): Promise<{ message: string }> => ({ message: 'No result' }),
+      json: async (): Promise<{ message: string }> => ({ message: 'Hello, World' }),
     });
 
     // fetchPrefectures関数を実行してエラーをキャッチ
     await expect(fetchPrefectures()).rejects.toThrow('No result in response');
   });
 
-  // テストケース: レスポンスデータが配列でない場合「No valid data or empty data」とエラーを投げる
-  test('レスポンスデータが配列でない場合「No valid data or empty data」とエラーを投げる', async (): Promise<void> => {
-    // モックのfetch関数を定義
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: true,
-      json: async (): Promise<{ result: string }> => ({ result: 'Invalid data' }),
-    });
-
-    // fetchPrefectures関数を実行してエラーをキャッチ
-    await expect(fetchPrefectures()).rejects.toThrow('No valid data or empty data');
-  });
-
-  // テストケース: レスポンスデータが空の配列の場合「No valid data or empty data」とエラーを投げる
-  test('レスポンスデータが空の配列の場合「No valid data or empty data」とエラーを投げる', async (): Promise<void> => {
+  /**
+   * レスポンスデータが空の配列の場合はエラーを投げる
+   *
+   * @expect
+   * Empty data
+   */
+  test('レスポンスデータが空の配列の場合「Empty data」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
@@ -94,10 +116,15 @@ describe('fetchPrefectures', () => {
     });
 
     // fetchPrefectures関数を実行してエラーをキャッチ
-    await expect(fetchPrefectures()).rejects.toThrow('No valid data or empty data');
+    await expect(fetchPrefectures()).rejects.toThrow('Empty data');
   });
 
-  // テストケース: fetch中にエラーが発生した場合はエラーを投げる
+  /**
+   * fetch中にエラーが発生した場合はエラーを投げる
+   *
+   * @expect
+   * Network error
+   */
   test('fetch中にエラーが発生した場合はエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
