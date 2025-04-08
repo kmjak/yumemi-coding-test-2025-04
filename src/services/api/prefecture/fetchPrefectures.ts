@@ -6,10 +6,12 @@ import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 
 /**
  * 都道府県一覧を取得する関数
- * @returns {Promise<Prefecture[] | false>} 都道府県一覧の配列またはfalse
+ * @returns {Promise<Prefecture[]>} 都道府県一覧の配列
+ *
+ * @author @kmjak
  */
 
-export default async function fetchPrefectures(): Promise<Prefecture[] | false> {
+export default async function fetchPrefectures(): Promise<Prefecture[]> {
   try {
     // APIの設定を取得
     const { API_ENDPOINT, X_API_KEY } = apiConf;
@@ -34,40 +36,34 @@ export default async function fetchPrefectures(): Promise<Prefecture[] | false> 
       },
     });
 
-    // レスポンスがOKでない場合はエラーを表示してfalseを返す
+    // レスポンスがOKでない場合はエラーを投げる
     if (!response.ok) {
-      console.error(`Error fetching: ${response.status} ${response.statusText}`);
-      return false;
+      throw new Error(`Error fetching: ${response.status} ${response.statusText}`);
     }
 
     // レスポンスからjsonデータを取得
     const responseJson = await response.json();
 
-    // responseJsonの中にresultがない場合はエラーを表示してfalseを返す
+    // responseJsonの中にresultがない場合はエラーを投げる
     if (!responseJson.result) {
-      console.error('No result in response');
-      return false;
+      throw new Error('No result in response');
     }
 
     // responseJsonの中にresultがある場合は、resultを取得
     const prefectures: Prefecture[] = responseJson.result;
 
-    // prefecturesが配列でない、もしくは空の配列の場合はエラーを表示してfalseを返す
+    // prefecturesが配列でない、もしくは空の配列の場合はエラーを投げる
     if (!Array.isArray(prefectures) || prefectures.length === 0) {
-      console.error('No valid data or empty data');
-      return false;
+      throw new Error('No valid data or empty data');
     }
 
     // データが取得できた場合はそのまま返す
     return prefectures;
   } catch (error: unknown) {
     if (error instanceof Error) {
-      // エラーがError型の場合はエラーメッセージを表示
-      console.error('Error fetching prefectures:', error.message);
+      throw error;
     } else {
-      // それ以外のエラーの場合は「Unknown error occurred」を表示
-      console.error('Unknown error occurred');
+      throw new Error('Unknown error occurred');
     }
-    return false;
   }
 }

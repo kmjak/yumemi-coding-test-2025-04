@@ -15,22 +15,26 @@ export async function GET(): Promise<NextResponse> {
   try {
     // fetchPrefectures関数を呼び出して都道府県一覧を取得
     const prefectures: Prefecture[] = await fetchPrefectures();
+
     // 都道府県一覧を取得できた場合は、NextResponse.jsonでレスポンスを返す
     return NextResponse.json(prefectures);
   } catch (error) {
-    // エラーが発生してそのエラーがErrorインスタンスの場合はエラーメッセージを表示
+    // エラーがErrorインスタンスの場合は、そのままエラーメッセージを返す
     if (error instanceof Error) {
-      console.error(error.message);
+      return NextResponse.json(
+        {
+          message: error.message,
+        },
+        { status: 500 }
+      );
     }
 
-    // NextResponse.jsonでエラーレスポンスを返す
+    // エラーがErrorインスタンスでない場合は、Unknown errorを返す
     return NextResponse.json(
       {
-        message: '都道府県一覧の取得に失敗しました。',
+        message: 'Unknown error',
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
