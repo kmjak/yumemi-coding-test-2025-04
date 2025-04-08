@@ -1,7 +1,7 @@
 import { PopulationComp } from '@/types/api/models/populationComp/PopulationComp';
 
 /**
- * getPopulationCompのレスポンスのデータ構造
+ * fetchPopulationCompByPrefCodeのレスポンスのデータ構造
  */
 export interface PopulationCompResponse {
   // 実績値と推計値の区切り年

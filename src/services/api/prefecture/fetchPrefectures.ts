@@ -9,7 +9,7 @@ import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
  * @returns {Promise<Prefecture[] | false>} 都道府県一覧の配列またはfalse
  */
 
-export default async function getPrefectures(): Promise<Prefecture[] | false> {
+export default async function fetchPrefectures(): Promise<Prefecture[] | false> {
   try {
     // APIの設定を取得
     const { API_ENDPOINT, X_API_KEY } = apiConf;
