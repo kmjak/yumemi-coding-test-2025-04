@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 /**
  * @method GET
- * @path /api/v1/prefectures
+ * @path /api/v1/prefecture/list
  * @returns 都道府県一覧のAPIレスポンス
  * @description 都道府県一覧を取得するAPIのレスポンスを返す
  *
