@@ -41,7 +41,7 @@ export default async function fetchPopulationCompByPrefCode({
       },
     });
 
-    // レスポンスがOKでない場合はエラーを表示してfalseを返す
+    // レスポンスがOKでない場合は「Error Fetching: ...」とエラーを投げる
     if (!response.ok) {
       throw new Error(`Error fetching: ${response.status} ${response.statusText}`);
     }
@@ -49,23 +49,13 @@ export default async function fetchPopulationCompByPrefCode({
     // レスポンスからjsonデータを取得
     const responseJson = await response.json();
 
-    // responseJsonの中にresultがない場合はエラーを表示してfalseを返す
+    // responseJsonの中にresultがない場合「No result in response」とエラーを投げる
     if (!('result' in responseJson)) {
       throw new Error('No result in response');
     }
 
     // responseJsonの中にresultがある場合は、resultを取得
     const populationComp: PopulationCompResponse = responseJson.result;
-
-    // responseJson.result が配列であるか確認
-    if (!Array.isArray(populationComp)) {
-      throw new Error('PopulationComp must be an array');
-    }
-
-    // populationCompが空の配列の場合はエラーを表示してfalseを返す
-    if (populationComp.length === 0) {
-      throw new Error('Empty data');
-    }
 
     // データが取得できた場合はそのまま返す
     return populationComp;

@@ -1,6 +1,13 @@
 import fetchPopulationCompByPrefCode from '@/services/api/populationComp/fetchPopulationCompByPrefCode';
 import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
 
+/**
+ * テストケース: fetchPopulationCompByPrefCode
+ * 都道府県コードを指定して人口構成を取得する関数のテスト
+ *
+ * @author @kmjak
+ */
+
 describe('fetchPopulationCompByPrefCode', () => {
   // 元のfetchを保存する変数
   let originalFetch: typeof global.fetch;
@@ -21,8 +28,31 @@ describe('fetchPopulationCompByPrefCode', () => {
     jest.clearAllMocks();
   });
 
-  // テストケース: 正常系
-  test('人口構成を取得できる', async (): Promise<void> => {
+  /**
+   * テストケース: 正常
+   * 都道府県コードを指定して人口構成を取得できる
+   *
+   * @expect
+   * result : {
+   *   boundaryYear: 2020,
+   *   data: [
+   *     {
+   *       label: '総人口',
+   *       data: [
+   *         {
+   *           year: 2010,
+   *           value: 1000,
+   *         },
+   *         {
+   *           year: 2015,
+   *           value: 1100,
+   *         },
+   *       ],
+   *     },
+   *   ],
+   *   }
+   */
+  test('人口構成を問題なく取得できる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
@@ -74,8 +104,15 @@ describe('fetchPopulationCompByPrefCode', () => {
     });
   });
 
-  // テストケース: fetchのURLとメソッド正しいか確認
-  test('fetchが正しいURLとヘッダーで呼ばれているか確認', async () => {
+  /**
+   * テストケース: fetchのURLとメソッド正しいか確認
+   * fetchが正しいURLとヘッダーで呼ばれているか確認
+   *
+   * @expect
+   * fetchが正しいURLとヘッダーで呼ばれていること
+   * fetchが1回だけ呼ばれていること
+   */
+  test('fetchのURLとメソッド正しいか確認', async () => {
     const mockFetch = jest.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
@@ -119,8 +156,15 @@ describe('fetchPopulationCompByPrefCode', () => {
     expect(mockFetch).toHaveBeenCalledTimes(1);
   });
 
-  // テストケース: レスポンスがOKでない場合
-  test('レスポンスがOKでない場合はfalseを返す', async (): Promise<void> => {
+  /**
+   * テストケース: レスポンスがOKでない場合
+   * 基本的にError fetching:...の形式でエラーを投げる
+   * 今回は500 Internal Server Errorを想定
+   *
+   * @expect
+   * Error fetching: 500 Internal Server Error
+   */
+  test('レスポンスがOKでない場合「Error fetching:...」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: false,
@@ -128,43 +172,40 @@ describe('fetchPopulationCompByPrefCode', () => {
       statusText: 'Internal Server Error',
     });
 
-    // fetchPopulationCompByPrefCode関数を実行
-    const response: PopulationCompResponse | false = await fetchPopulationCompByPrefCode({
-      prefCode: 1,
-    });
-
-    // レスポンスがfalseであることを確認
-    expect(response).toBe(false);
+    // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
+    await expect(fetchPopulationCompByPrefCode({ prefCode: 1 })).rejects.toThrow(
+      'Error fetching: 500 Internal Server Error'
+    );
   });
 
-  // テストケース: レスポンスデータにresultがない場合
-  test('レスポンスデータにresultがない場合はfalseを返す', async (): Promise<void> => {
+  /**
+   * テストケース: レスポンスデータにresultがない場合
+   *
+   * @expect
+   *
+   */
+  test('レスポンスデータにresultがない場合「No result in response」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
       json: async (): Promise<unknown> => ({ message: 'No result' }),
     });
 
-    // fetchPopulationCompByPrefCode関数を実行
-    const response: PopulationCompResponse | false = await fetchPopulationCompByPrefCode({
-      prefCode: 1,
-    });
-
-    // レスポンスがfalseであることを確認
-    expect(response).toBe(false);
+    // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
+    await expect(fetchPopulationCompByPrefCode({ prefCode: 1 })).rejects.toThrow(
+      'No result in response'
+    );
   });
 
-  // テストケース: エラーが発生した場合
-  test('エラーが発生した場合はfalseを返す', async (): Promise<void> => {
+  /**
+   * テストケース: エラーが発生した場合
+   * Network errorを想定
+   *
+   * @expect
+   * Error fetching population comp: Network error
+   */
+  test('エラーが発生した場合そのエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
-
-    // fetchPopulationCompByPrefCode関数を実行
-    const response: PopulationCompResponse | false = await fetchPopulationCompByPrefCode({
-      prefCode: 1,
-    });
-
-    // レスポンスがfalseであることを確認
-    expect(response).toBe(false);
   });
 });
