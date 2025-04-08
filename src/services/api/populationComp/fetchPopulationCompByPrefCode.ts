@@ -3,7 +3,7 @@
 import { apiConf } from '@/conf/api/apiConf';
 import { apiPath } from '@/conf/api/apiPath';
 import { ApiConf } from '@/types/api/conf/ApiConf';
-import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompoResponse';
+import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
 
 /**
  * 指定した都道府県の人口構成を取得する関数

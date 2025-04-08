@@ -1,5 +1,5 @@
 import fetchPopulationCompByPrefCode from '@/services/api/populationComp/fetchPopulationCompByPrefCode';
-import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompoResponse';
+import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
 
 describe('fetchPopulationCompByPrefCodeByPrefCode', () => {
   // 元のfetchを保存する変数
