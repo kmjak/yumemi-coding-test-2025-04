@@ -1,6 +1,15 @@
 import fetchPopulationCompByPrefCode from '@/services/api/populationComp/fetchPopulationCompByPrefCode';
 import { NextRequest, NextResponse } from 'next/server';
 
+/**
+ * @method GET
+ * @path /api/v1/population/comp/[prefCode]
+ * @return 都道府県の人口構成のAPIレスポンス
+ * @description 都道府県番号を使ってその都道府県の人口構成を取得するAPIのレスポンスを返す
+ *
+ * @author @kmjak
+ */
+
 export async function GET(request: NextRequest, { params }: { params: { prefCode: string } }) {
   try {
     // URLから文字列型のprefCodeを取得(await がないとエラーになる)
