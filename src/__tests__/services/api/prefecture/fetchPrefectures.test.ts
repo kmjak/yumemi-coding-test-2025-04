@@ -28,7 +28,7 @@ describe('fetchPrefectures', () => {
   });
 
   /**
-   * テストケース: 正常系
+   * テストケース: 正常
    * 都道府県一覧を取得できる
    *
    * @expect
@@ -66,7 +66,7 @@ describe('fetchPrefectures', () => {
   });
 
   /**
-   * レスポンスがOKでない場合はエラーを投げる
+   * テストケース: レスポンスがOKでない場合
    * 基本的にError fetching:...の形式でエラーを投げる
    * 今回は500 Internal Server Errorを想定
    *
@@ -86,7 +86,7 @@ describe('fetchPrefectures', () => {
   });
 
   /**
-   * レスポンスデータにresultがない場合はエラーを投げる
+   * テストケース: レスポンスデータにresultがない場合
    *
    * @expect
    * No result in response
@@ -103,7 +103,7 @@ describe('fetchPrefectures', () => {
   });
 
   /**
-   * レスポンスデータのresultが配列でない場合はエラーを投げる
+   * テストケース: レスポンスデータのresultが配列でない場合
    *
    * @expect
    * Prefectures must be an array
@@ -122,7 +122,7 @@ describe('fetchPrefectures', () => {
   });
 
   /**
-   * レスポンスデータが空の配列の場合はエラーを投げる
+   * テストケース: レスポンスデータが空の配列の場合
    *
    * @expect
    * Empty data
@@ -139,7 +139,7 @@ describe('fetchPrefectures', () => {
   });
 
   /**
-   * fetch中にエラーが発生した場合はエラーを投げる
+   * テストケース: fetch中にエラーが発生した場合
    *
    * @expect
    * Network error
