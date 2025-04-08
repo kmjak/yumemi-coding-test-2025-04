@@ -2,18 +2,42 @@ import fetchPopulationCompByPrefCode from '@/services/api/populationComp/fetchPo
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
- * @method GET
- * @path /api/v1/population/comp/[prefCode]
+ * @method POST
+ * @path /api/v1/population/comp/
  * @return 都道府県の人口構成のAPIレスポンス
  * @description 都道府県番号を使ってその都道府県の人口構成を取得するAPIのレスポンスを返す
  *
  * @author @kmjak
  */
 
-export async function GET(request: NextRequest, { params }: { params: { prefCode: string } }) {
+export async function POST(request: NextRequest) {
   try {
-    // URLから文字列型のprefCodeを取得
-    const { prefCode: prefCodeString } = params;
+    // リクエストボディを取得
+    const requestBody = await request.json();
+
+    // リクエストボディにprefCodeが含まれているか確認
+    if (!('prefCode' in requestBody)) {
+      return NextResponse.json(
+        {
+          message: 'prefCode is required',
+        },
+        { status: 400 }
+      );
+    }
+
+    // リクエストボディからprefCodeを取得
+    const prefCodeString = requestBody.prefCode;
+
+    // prefCodeがundefinedの場合はエラーを返す
+    if (prefCodeString === undefined) {
+      return NextResponse.json(
+        {
+          message: 'prefCode is required',
+        },
+        { status: 400 }
+      );
+    }
+
     // 文字列のprefCodeを数値に変換
     const prefCode = Math.trunc(Number(prefCodeString));
 
