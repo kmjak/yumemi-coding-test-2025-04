@@ -49,7 +49,7 @@ describe('fetchPrefectures', () => {
   });
 
   // テストケース: レスポンスがOKでない場合
-  test('レスポンスがOKでない場合はfalseを返す', async (): Promise<void> => {
+  test('レスポンスがOKでない場合', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: false,
@@ -57,65 +57,52 @@ describe('fetchPrefectures', () => {
       statusText: 'Internal Server Error',
     });
 
-    // fetchPrefectures関数を実行
-    const response: Prefecture[] | false = await fetchPrefectures();
-
-    // レスポンスがfalseであることを確認
-    expect(response).toBe(false);
+    // fetchPrefectures関数を実行してエラーをキャッチ
+    await expect(fetchPrefectures()).rejects.toThrow('Error fetching: 500 Internal Server Error');
   });
 
   // テストケース: レスポンスデータにresultがない場合
-  test('レスポンスデータにresultがない場合はfalseを返す', async (): Promise<void> => {
+  test('レスポンスデータにresultがない場合', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      json: async (): Promise<unknown> => ({ message: 'No result' }),
+      json: async (): Promise<{ message: string }> => ({ message: 'No result' }),
     });
-    // fetchPrefectures関数を実行
-    const response: Prefecture[] | false = await fetchPrefectures();
-    // レスポンスがfalseであることを確認
-    expect(response).toBe(false);
+
+    // fetchPrefectures関数を実行してエラーをキャッチ
+    await expect(fetchPrefectures()).rejects.toThrow('No result in response');
   });
 
   // テストケース: レスポンスデータが配列でない場合
-  test('レスポンスデータが配列でない場合はfalseを返す', async (): Promise<void> => {
+  test('レスポンスデータが配列でない場合', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      json: async (): Promise<unknown> => ({ message: 'Invalid data' }),
+      json: async (): Promise<{ result: string }> => ({ result: 'Invalid data' }),
     });
 
-    // fetchPrefectures関数を実行
-    const response: Prefecture[] | false = await fetchPrefectures();
-
-    // レスポンスがfalseであることを確認
-    expect(response).toBe(false);
+    // fetchPrefectures関数を実行してエラーをキャッチ
+    await expect(fetchPrefectures()).rejects.toThrow('No valid data or empty data');
   });
 
   // テストケース: レスポンスデータが空の配列の場合
-  test('レスポンスデータが空の配列の場合はfalseを返す', async (): Promise<void> => {
+  test('レスポンスデータが空の配列の場合', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      json: async (): Promise<Prefecture[]> => [],
+      json: async (): Promise<{ result: Prefecture[] }> => ({ result: [] }),
     });
 
-    // fetchPrefectures関数を実行
-    const response: Prefecture[] | false = await fetchPrefectures();
-
-    // レスポンスがfalseであることを確認
-    expect(response).toBe(false);
+    // fetchPrefectures関数を実行してエラーをキャッチ
+    await expect(fetchPrefectures()).rejects.toThrow('No valid data or empty data');
   });
 
   // テストケース: エラーが発生した場合
-  test('エラーが発生した場合はfalseを返す', async (): Promise<void> => {
+  test('エラーが発生した場合', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
 
-    // fetchPrefectures関数を実行
-    const response: Prefecture[] | false = await fetchPrefectures();
-
-    // レスポンスがfalseであることを確認
-    expect(response).toBe(false);
+    // fetchPrefectures関数を実行してエラーをキャッチ
+    await expect(fetchPrefectures()).rejects.toThrow('Network error');
   });
 });
