@@ -3,7 +3,7 @@
 import { apiConf } from '@/conf/api/apiConf';
 import { apiPath } from '@/conf/api/apiPath';
 import { ApiConf } from '@/types/api/conf/ApiConf';
-import { PopulationCompositionResponse } from '@/types/api/models/populationComposition/PopulationCompositionResponse';
+import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompoResponse';
 
 /**
  * 指定した都道府県の人口構成を取得する関数
@@ -11,17 +11,17 @@ import { PopulationCompositionResponse } from '@/types/api/models/populationComp
  * @returns 人口構成のデータまたはfalse
  */
 
-export default async function fetchPopulationComposition({
+export default async function fetchPopulationComp({
   prefCode,
 }: {
   prefCode: number;
-}): Promise<PopulationCompositionResponse | false> {
+}): Promise<PopulationCompResponse | false> {
   try {
     // APIの設定を取得
     const { API_ENDPOINT, X_API_KEY }: ApiConf = apiConf;
 
     // 人口構成を取得するURL
-    const apiUrl: string = `${API_ENDPOINT}${apiPath.POPULATION_COMPOSITION}?prefCode=${prefCode}`;
+    const apiUrl: string = `${API_ENDPOINT}${apiPath.POPULATION_COMP}?prefCode=${prefCode}`;
 
     // 指定した都道府県の人口構成を取得する
     const response = await fetch(apiUrl, {
@@ -55,13 +55,13 @@ export default async function fetchPopulationComposition({
     }
 
     // responseJsonの中にresultがある場合は、resultを取得
-    const populationComposition: PopulationCompositionResponse = responseJson.result;
+    const populationComp: PopulationCompResponse = responseJson.result;
 
-    return populationComposition;
+    return populationComp;
   } catch (error: unknown) {
     if (error instanceof Error) {
       // エラーがError型の場合はエラーメッセージを表示
-      console.error('Error fetching population composition:', error.message);
+      console.error('Error fetching population comp:', error.message);
     } else {
       // それ以外のエラーの場合は「Unknown error occurred」を表示
       console.error('Unknown error occurred');
