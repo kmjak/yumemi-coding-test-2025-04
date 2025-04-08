@@ -57,16 +57,6 @@ export default async function fetchPopulationCompByPrefCode({
     // responseJsonの中にresultがある場合は、resultを取得
     const populationComp: PopulationCompResponse = responseJson.result;
 
-    // responseJson.result が配列であるか確認
-    if (!Array.isArray(populationComp)) {
-      throw new Error('PopulationComp must be an array');
-    }
-
-    // populationCompが空の配列の場合はエラーを表示してfalseを返す
-    if (populationComp.length === 0) {
-      throw new Error('Empty data');
-    }
-
     // データが取得できた場合はそのまま返す
     return populationComp;
   } catch (error: unknown) {
