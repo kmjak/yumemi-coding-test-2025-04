@@ -48,8 +48,8 @@ describe('fetchPrefectures', () => {
     ]);
   });
 
-  // テストケース: レスポンスがOKでない場合
-  test('レスポンスがOKでない場合', async (): Promise<void> => {
+  // テストケース: レスポンスがOKでない場合「Error fetching:...」とエラーを投げる
+  test('レスポンスがOKでない場合「Error fetching:...」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: false,
@@ -61,8 +61,8 @@ describe('fetchPrefectures', () => {
     await expect(fetchPrefectures()).rejects.toThrow('Error fetching: 500 Internal Server Error');
   });
 
-  // テストケース: レスポンスデータにresultがない場合
-  test('レスポンスデータにresultがない場合', async (): Promise<void> => {
+  // テストケース: レスポンスデータにresultがない場合「No result in response」とエラーを投げる
+  test('レスポンスデータにresultがない場合「No result in response」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
@@ -73,8 +73,8 @@ describe('fetchPrefectures', () => {
     await expect(fetchPrefectures()).rejects.toThrow('No result in response');
   });
 
-  // テストケース: レスポンスデータが配列でない場合
-  test('レスポンスデータが配列でない場合', async (): Promise<void> => {
+  // テストケース: レスポンスデータが配列でない場合「No valid data or empty data」とエラーを投げる
+  test('レスポンスデータが配列でない場合「No valid data or empty data」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
@@ -85,8 +85,8 @@ describe('fetchPrefectures', () => {
     await expect(fetchPrefectures()).rejects.toThrow('No valid data or empty data');
   });
 
-  // テストケース: レスポンスデータが空の配列の場合
-  test('レスポンスデータが空の配列の場合', async (): Promise<void> => {
+  // テストケース: レスポンスデータが空の配列の場合「No valid data or empty data」とエラーを投げる
+  test('レスポンスデータが空の配列の場合「No valid data or empty data」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
@@ -97,8 +97,8 @@ describe('fetchPrefectures', () => {
     await expect(fetchPrefectures()).rejects.toThrow('No valid data or empty data');
   });
 
-  // テストケース: エラーが発生した場合
-  test('エラーが発生した場合', async (): Promise<void> => {
+  // テストケース: fetch中にエラーが発生した場合はエラーを投げる
+  test('fetch中にエラーが発生した場合はエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
 
