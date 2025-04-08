@@ -10,6 +10,7 @@ import { PopulationCompositionResponse } from '@/types/api/models/populationComp
  * @param prefCode 都道府県コード
  * @returns 人口構成のデータまたはfalse
  */
+
 export default async function fetchPopulationComposition({
   prefCode,
 }: {
@@ -20,14 +21,16 @@ export default async function fetchPopulationComposition({
     const { API_ENDPOINT, X_API_KEY }: ApiConf = apiConf;
 
     // 人口構成を取得するURL
-    const url: string = `${API_ENDPOINT}${apiPath.POPULATION_COMPOSITION}?prefCode=${prefCode}`;
+    const apiUrl: string = `${API_ENDPOINT}${apiPath.POPULATION_COMPOSITION}?prefCode=${prefCode}`;
 
     // 指定した都道府県の人口構成を取得する
-    const res = await fetch(url, {
+    const response = await fetch(apiUrl, {
       // メソッドはGET
       method: 'GET',
+
       // 人口構成は基本的に変わることがないのでキャッシュを使用
       cache: 'force-cache',
+
       // リクエストヘッダーにContent-TypeとX-API-KEYを設定
       headers: {
         'Content-Type': 'application/json',
@@ -37,28 +40,30 @@ export default async function fetchPopulationComposition({
     });
 
     // レスポンスがOKでない場合はエラーを表示してfalseを返す
-    if (!res.ok) {
-      console.error(`Error fetching: ${res.status} ${res.statusText}`);
+    if (!response.ok) {
+      console.error(`Error fetching: ${response.status} ${response.statusText}`);
       return false;
     }
 
     // レスポンスからjsonデータを取得
-    const jsonData = await res.json();
+    const responseJson = await response.json();
 
-    // jsonDataの中にresultがない場合はエラーを表示してfalseを返す
-    if (!jsonData.result) {
+    // responseJsonの中にresultがない場合はエラーを表示してfalseを返す
+    if (!responseJson.result) {
       console.error('No result in response');
       return false;
     }
 
-    // jsonDataの中にresultがある場合は、resultを取得
-    const data: PopulationCompositionResponse = jsonData.result;
+    // responseJsonの中にresultがある場合は、resultを取得
+    const populationComposition: PopulationCompositionResponse = responseJson.result;
 
-    return data;
+    return populationComposition;
   } catch (error: unknown) {
     if (error instanceof Error) {
+      // エラーがError型の場合はエラーメッセージを表示
       console.error('Error fetching population composition:', error.message);
     } else {
+      // それ以外のエラーの場合は「Unknown error occurred」を表示
       console.error('Unknown error occurred');
     }
     return false;
