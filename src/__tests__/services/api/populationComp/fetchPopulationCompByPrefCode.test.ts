@@ -1,7 +1,7 @@
 import fetchPopulationCompByPrefCode from '@/services/api/populationComp/fetchPopulationCompByPrefCode';
 import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
 
-describe('fetchPopulationCompByPrefCodeByPrefCode', () => {
+describe('fetchPopulationCompByPrefCode', () => {
   // 元のfetchを保存する変数
   let originalFetch: typeof global.fetch;
 
