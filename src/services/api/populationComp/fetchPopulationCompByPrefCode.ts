@@ -11,7 +11,7 @@ import { PopulationCompResponse } from '@/types/api/models/populationComp/Popula
  * @returns 人口構成のデータまたはfalse
  */
 
-export default async function fetchPopulationComp({
+export default async function fetchPopulationCompByPrefCode({
   prefCode,
 }: {
   prefCode: number;
