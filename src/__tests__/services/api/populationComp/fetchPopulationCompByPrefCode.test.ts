@@ -2,8 +2,8 @@ import fetchPopulationCompByPrefCode from '@/services/api/populationComp/fetchPo
 import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
 
 /**
- * テストケース: fetchPopulationCompByPrefCode
- * 都道府県コードを指定して人口構成を取得する関数のテスト
+ * @file fetchPopulationCompByPrefCode.test.ts
+ * @description fetchPopulationCompByPrefCode関数のテスト
  *
  * @author @kmjak
  */
