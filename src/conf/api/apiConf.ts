@@ -1,5 +1,13 @@
 import { ApiConf } from '@/types/api/conf/ApiConf';
 
+/**
+ * @file apiConf.ts
+ * @exports apiConf
+ * @description APIの設定に関する定数を定義する
+ *
+ * @author @kmjak
+ */
+
 export const apiConf: ApiConf = {
   // APIのエンドポイント
   API_ENDPOINT: process.env.API_ENDPOINT || '',
