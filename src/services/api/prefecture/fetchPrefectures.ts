@@ -5,8 +5,10 @@ import { apiPath } from '@/conf/api/apiPath';
 import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 
 /**
- * 都道府県一覧を取得する関数
- * @return {Promise<Prefecture[]>} 都道府県一覧の配列
+ * @file fetchPrefectures.ts
+ * @exports fetchPrefectures
+ * @description 都道府県一覧を取得する関数
+ * @return 都道府県のデータ
  *
  * @author @kmjak
  */
