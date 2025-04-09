@@ -1,4 +1,4 @@
-import { ApiConf } from '@/types/api/ApiConf';
+import { ApiConf } from '@/types/api/conf/ApiConf';
 
 /**
  * @file apiConf.ts

@@ -28,16 +28,23 @@
   - `function getUserInfo(userId, userName) { /* ... */ }`
   - `const handleClick = (event) => { /* ... */ };`
 
+## 設定オブジェクト
+
+- **規則**: キャメルケース
+- **例**:
+  - `const apiConf = { ... };`
+  - `const apiPath = { ... };`
+
 ## コンポーネント
 
 - **規則**: パスカルケース
 - **例**:
-  - `const UserProfile = () => { /* JSX content */ };`
+  - `function UserProfile() { /* JSX content */ };`
   - `const Header = () => { /* JSX content */ };`
 
 ## 型定義
 
 - **規則**: パスカルケース
 - **例**:
-  - `type UserProfile = { name: string; age: number; };`
-  - `type ProductDetails = { id: number; title: string; price: number; };`
+  - `interface UserProfile { name: string; age: number; };`
+  - `interface ProductDetails { id: number; title: string; price: number; };`
