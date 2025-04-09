@@ -2,11 +2,34 @@ import fetchPopulationCompByPrefCode from '@/services/api/populationComp/fetchPo
 import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
 
 /**
- * テストケース: fetchPopulationCompByPrefCode
- * 都道府県コードを指定して人口構成を取得する関数のテスト
+ * @file fetchPopulationCompByPrefCode.test.ts
+ * @description fetchPopulationCompByPrefCode関数のテスト
  *
  * @author @kmjak
  */
+
+/**
+ * apiConfのモック
+ * APIのエンドポイントとAPIキーをモックする
+ * @see src/conf/api/apiConf.ts
+ */
+jest.mock('@/conf/api/apiConf', () => ({
+  apiConf: {
+    API_ENDPOINT: 'https://test-api.example.com',
+    X_API_KEY: 'test-api-key',
+  },
+}));
+
+/**
+ * apiPathのモック
+ * 人口構成を取得するAPIのパスをモックする
+ * @see src/conf/api/apiPath.ts
+ */
+jest.mock('@/conf/api/apiPath', () => ({
+  apiPath: {
+    POPULATION_COMP: '/api/populationComp',
+  },
+}));
 
 describe('fetchPopulationCompByPrefCode', () => {
   // 元のfetchを保存する変数
@@ -207,5 +230,96 @@ describe('fetchPopulationCompByPrefCode', () => {
   test('エラーが発生した場合そのエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
+  });
+
+  /**
+   * テストケース: API_ENDPOINTが読み込めなかった場合
+   *
+   * @expect
+   * API_ENDPOINT is empty
+   */
+  test('API_ENDPOINTが読み込めなかった場合はエラーを投げる', async () => {
+    // モジュールをリセット
+    jest.resetModules();
+
+    // apiConfをモックするときにAPI_ENDPOINTを空にする
+    jest.doMock('@/conf/api/apiConf', () => ({
+      apiConf: {
+        API_ENDPOINT: '',
+        X_API_KEY: 'X-API-KEY',
+      },
+    }));
+
+    const fetchPopulationCompByPrefCode = (
+      await import('@/services/api/populationComp/fetchPopulationCompByPrefCode')
+    ).default;
+
+    // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
+    await expect(fetchPopulationCompByPrefCode({ prefCode: 1 })).rejects.toThrow(
+      'API_ENDPOINT is empty'
+    );
+  });
+
+  /**
+   * テストケース: X_API_KEYが読み込めなかった場合
+   *
+   * @expect
+   * X_API_KEY is empty
+   */
+  test('X_API_KEYが読み込めなかった場合はエラーを投げる', async () => {
+    // モジュールをリセット
+    jest.resetModules();
+
+    // apiConfをモックするときにX_API_KEYを空にする
+    jest.doMock('@/conf/api/apiConf', () => ({
+      apiConf: {
+        API_ENDPOINT: 'https://test-api.example.com',
+        X_API_KEY: '',
+      },
+    }));
+
+    const fetchPopulationCompByPrefCode = (
+      await import('@/services/api/populationComp/fetchPopulationCompByPrefCode')
+    ).default;
+
+    // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
+    await expect(fetchPopulationCompByPrefCode({ prefCode: 1 })).rejects.toThrow(
+      'X_API_KEY is empty'
+    );
+  });
+
+  /**
+   * テストケース: POPULATION_COMPが読み込めなかった場合
+   *
+   * @expect
+   * POPULATION_COMP is empty
+   */
+  test('POPULATION_COMPが読み込めなかった場合はエラーを投げる', async () => {
+    // モジュールをリセット
+    jest.resetModules();
+
+    // apiConfをAPI_ENDPOINTとAPI_KEYにデータを入れる
+    jest.doMock('@/conf/api/apiConf', () => ({
+      apiConf: {
+        API_ENDPOINT: 'https://test-api.example.com',
+        X_API_KEY: 'X-API-KEY',
+      },
+    }));
+
+    // apiPathをモックするときにPOPULATION_COMPを空にする
+    jest.doMock('@/conf/api/apiPath', () => ({
+      apiPath: {
+        POPULATION_COMP: '',
+      },
+    }));
+
+    const fetchPopulationCompByPrefCode = (
+      await import('@/services/api/populationComp/fetchPopulationCompByPrefCode')
+    ).default;
+
+    // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
+    await expect(fetchPopulationCompByPrefCode({ prefCode: 1 })).rejects.toThrow(
+      'POPULATION_COMP is empty'
+    );
   });
 });
