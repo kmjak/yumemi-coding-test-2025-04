@@ -246,7 +246,7 @@ describe('fetchPrefectures', () => {
       },
     }));
 
-    // apiPathをモックするときにPREFECTURES_PATHを空にする
+    // apiPathをモックするときにPREFECTURESを空にする
     jest.doMock('@/conf/api/apiPath', () => ({
       apiPath: {
         PREFECTURES: '',
