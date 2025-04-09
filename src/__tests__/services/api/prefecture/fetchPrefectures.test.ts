@@ -2,6 +2,36 @@ import fetchPrefectures from '@/services/api/prefecture/fetchPrefectures';
 import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 
 /**
+ * @file fetchPrefectures.test.ts
+ * @description fetchPrefectures関数のテスト
+ *
+ * @author @kmjak
+ */
+
+/**
+ * apiConfのモック
+ * APIのエンドポイントとAPIキーをモックする
+ * @see src/conf/api/apiConf.ts
+ */
+jest.mock('@/conf/api/apiConf', () => ({
+  apiConf: {
+    API_ENDPOINT: 'https://test-api.example.com',
+    X_API_KEY: 'test-api-key',
+  },
+}));
+
+/**
+ * apiPathのモック
+ * 都道府県一覧を取得するAPIのパスをモックする
+ * @see src/conf/api/apiPath.ts
+ */
+jest.mock('@/conf/api/apiPath', () => ({
+  apiPath: {
+    PREFECTURES: '/api/prefectures',
+  },
+}));
+
+/**
  * テストケース: fetchPrefectures
  * 都道府県一覧を取得する関数のテスト
  *
@@ -150,5 +180,81 @@ describe('fetchPrefectures', () => {
 
     // fetchPrefectures関数を実行してエラーをキャッチ
     await expect(fetchPrefectures()).rejects.toThrow('Network error');
+  });
+
+  /**
+   * テストケース: API_ENDPOINTが読み込めなかった場合
+   *
+   * @expect
+   * API_ENDPOINT is empty
+   */
+  test('API_ENDPOINTが読み込めなかった場合はエラーを投げる', async () => {
+    // モジュールをリセット
+    jest.resetModules();
+
+    // apiConfをモックするときにAPI_ENDPOINTを空にする
+    jest.doMock('@/conf/api/apiConf', () => ({
+      apiConf: {
+        API_ENDPOINT: '',
+        X_API_KEY: 'X-API-KEY',
+      },
+    }));
+
+    const fetchPrefectures = (await import('@/services/api/prefecture/fetchPrefectures')).default;
+
+    await expect(fetchPrefectures()).rejects.toThrow('API_ENDPOINT is empty');
+  });
+
+  /**
+   * テストケース: X_API_KEYが読み込めなかった場合
+   *
+   * @expect
+   * X_API_KEY is empty
+   */
+  test('X_API_KEYが読み込めなかった場合はエラーを投げる', async () => {
+    // モジュールをリセット
+    jest.resetModules();
+
+    // apiConfをモックするときにX_API_KEYを空にする
+    jest.doMock('@/conf/api/apiConf', () => ({
+      apiConf: {
+        API_ENDPOINT: 'https://test-api.example.com',
+        X_API_KEY: '',
+      },
+    }));
+
+    const fetchPrefectures = (await import('@/services/api/prefecture/fetchPrefectures')).default;
+
+    await expect(fetchPrefectures()).rejects.toThrow('X_API_KEY is empty');
+  });
+
+  /**
+   * テストケース: PREFECTURES_PATHが読み込めなかった場合
+   *
+   * @expect
+   * PREFECTURES is empty
+   */
+  test('PREFECTURES_PATHが読み込めなかった場合はエラーを投げる', async () => {
+    // モジュールをリセット
+    jest.resetModules();
+
+    // apiConfをAPI_ENDPOINTとAPI_KEYにデータを入れる
+    jest.doMock('@/conf/api/apiConf', () => ({
+      apiConf: {
+        API_ENDPOINT: 'https://test-api.example.com',
+        X_API_KEY: 'X-API-KEY',
+      },
+    }));
+
+    // apiPathをモックするときにPREFECTURES_PATHを空にする
+    jest.doMock('@/conf/api/apiPath', () => ({
+      apiPath: {
+        PREFECTURES: '',
+      },
+    }));
+
+    const fetchPrefectures = (await import('@/services/api/prefecture/fetchPrefectures')).default;
+
+    await expect(fetchPrefectures()).rejects.toThrow('PREFECTURES is empty');
   });
 });
