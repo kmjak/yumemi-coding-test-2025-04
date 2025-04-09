@@ -1,8 +1,9 @@
 /**
- * APIのパスを定義する
  * @file ApiPath.ts
  * @exports ApiPath
  * @description APIのパスを定義する
+ *
+ * @author @kmjak
  */
 
 export interface ApiPath {
