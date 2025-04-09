@@ -1,3 +1,10 @@
+/**
+ * APIのパスを定義する
+ * @file ApiPath.ts
+ * @exports ApiPath
+ * @description APIのパスを定義する
+ */
+
 export interface ApiPath {
   // APIから都道府県一覧を取得するパス
   PREFECTURES: string;
