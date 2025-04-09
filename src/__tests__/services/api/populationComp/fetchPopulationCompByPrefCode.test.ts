@@ -79,7 +79,7 @@ describe('fetchPopulationCompByPrefCode', () => {
     });
 
     // fetchPopulationCompByPrefCode関数を実行
-    const response: PopulationCompResponse | false = await fetchPopulationCompByPrefCode({
+    const response: PopulationCompResponse = await fetchPopulationCompByPrefCode({
       prefCode: 1,
     });
 
