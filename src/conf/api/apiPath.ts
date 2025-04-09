@@ -3,7 +3,7 @@ import { ApiPath } from '@/types/api/conf/ApiPath';
 /**
  * @file apiPath.ts
  * @exports apiPath
- * @description: APIのパスに関する定数を定義する
+ * @description APIのパスに関する定数を定義する
  *
  * @author @kmjak
  */
