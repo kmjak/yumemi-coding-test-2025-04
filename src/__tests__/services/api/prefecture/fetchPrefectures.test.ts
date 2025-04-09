@@ -54,7 +54,7 @@ describe('fetchPrefectures', () => {
     });
 
     // fetchPrefectures関数を実行
-    const response: Prefecture[] | false = await fetchPrefectures();
+    const response: Prefecture[] = await fetchPrefectures();
 
     // fetchPrefectures関数の期待する戻り値と一致するか確認
     expect(response).toEqual([
