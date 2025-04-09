@@ -8,6 +8,29 @@ import { PopulationCompResponse } from '@/types/api/models/populationComp/Popula
  * @author @kmjak
  */
 
+/**
+ * apiConfのモック
+ * APIのエンドポイントとAPIキーをモックする
+ * @see src/conf/api/apiConf.ts
+ */
+jest.mock('@/conf/api/apiConf', () => ({
+  apiConf: {
+    API_ENDPOINT: 'https://test-api.example.com',
+    X_API_KEY: 'test-api-key',
+  },
+}));
+
+/**
+ * apiPathのモック
+ * 人口構成を取得するAPIのパスをモックする
+ * @see src/conf/api/apiPath.ts
+ */
+jest.mock('@/conf/api/apiPath', () => ({
+  apiPath: {
+    POPULATION_COMP: '/api/populationComp',
+  },
+}));
+
 describe('fetchPopulationCompByPrefCode', () => {
   // 元のfetchを保存する変数
   let originalFetch: typeof global.fetch;
