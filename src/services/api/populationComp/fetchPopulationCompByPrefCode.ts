@@ -22,8 +22,26 @@ export default async function fetchPopulationCompByPrefCode({
     // APIの設定を取得
     const { API_ENDPOINT, X_API_KEY }: ApiConf = apiConf;
 
+    // API_ENDPOINTが空の場合はエラーを投げる
+    if (API_ENDPOINT === '') {
+      throw new Error('API_ENDPOINT is empty');
+    }
+
+    // X_API_KEYが空の場合はエラーを投げる
+    if (X_API_KEY === '') {
+      throw new Error('X_API_KEY is empty');
+    }
+
+    // APIのパスを取得
+    const { POPULATION_COMP: POPULATION_COMP_PATH } = apiPath;
+
+    // POPULATION_COMP_PATHが空の場合はエラーを投げる
+    if (POPULATION_COMP_PATH === '') {
+      throw new Error('POPULATION_COMP is empty');
+    }
+
     // 人口構成を取得するURL
-    const apiUrl: string = `${API_ENDPOINT}${apiPath.POPULATION_COMP}?prefCode=${prefCode}`;
+    const apiUrl: string = `${API_ENDPOINT}${POPULATION_COMP_PATH}?prefCode=${prefCode}`;
 
     // 指定した都道府県の人口構成を取得する
     const response = await fetch(apiUrl, {
