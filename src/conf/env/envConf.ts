@@ -10,5 +10,5 @@ import { EnvConf } from '@/types/env/EnvConf';
 
 export const envConf: EnvConf = {
   // hostのURL
-  HOST_URL: process.env.NEXT_PUBLIC_HOST_URL || 'http://localhost:3000',
+  HOST_URL: process.env.NEXT_PUBLIC_HOST_URL || '',
 };
