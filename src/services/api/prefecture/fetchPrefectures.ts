@@ -16,8 +16,26 @@ export default async function fetchPrefectures(): Promise<Prefecture[]> {
     // APIの設定を取得
     const { API_ENDPOINT, X_API_KEY } = apiConf;
 
+    // API_ENDPOINTが空の場合はエラーを投げる
+    if (API_ENDPOINT === '') {
+      throw new Error('API_ENDPOINT is empty');
+    }
+
+    // X_API_KEYが空の場合はエラーを投げる
+    if (X_API_KEY === '') {
+      throw new Error('X_API_KEY is empty');
+    }
+
+    // APIのパスを取得
+    const { PREFECTURES: PREFECTURES_PATH } = apiPath;
+
+    //PREFECTURES_PATHが空の場合はエラーを投げる
+    if (PREFECTURES_PATH === '') {
+      throw new Error('PREFECTURES is empty');
+    }
+
     // 都道府県一覧を取得するURL
-    const apiUrl: string = `${API_ENDPOINT}${apiPath.PREFECTURES}`;
+    const apiUrl: string = `${API_ENDPOINT}${PREFECTURES_PATH}`;
 
     // APIの都道府県一覧を取得する
     const response = await fetch(apiUrl, {
