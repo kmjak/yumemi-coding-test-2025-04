@@ -11,7 +11,11 @@ import { PopulationCompResponse } from '@/types/api/models/populationComp/Popula
  * @author @kmjak
  */
 
-export default async function getPopulationCompByPrefCode({ prefCode }: { prefCode: number }) {
+export default async function getPopulationCompByPrefCode({
+  prefCode,
+}: {
+  prefCode: number;
+}): Promise<PopulationCompResponse> {
   try {
     // HOST_URLを取得
     const { HOST_URL } = envConf;
