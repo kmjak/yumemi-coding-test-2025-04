@@ -20,11 +20,11 @@ export default async function getPrefectures(): Promise<Prefecture[]> {
       throw new Error('HOST_URL is not defined');
     }
 
-    // APIのURLを作成
-    const apiUr: string = `${HOST_URL}/api/v1/prefecture/list`;
+    // API RouterのURLを作成
+    const apiRooterUrl: string = `${HOST_URL}/api/v1/prefecture/list`;
 
     // APIの都道府県一覧を取得する
-    const response = await fetch(apiUr, {
+    const response = await fetch(apiRooterUrl, {
       // メソッドはGET
       method: 'GET',
 
