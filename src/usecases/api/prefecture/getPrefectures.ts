@@ -21,10 +21,10 @@ export default async function getPrefectures(): Promise<Prefecture[]> {
     }
 
     // API RouterのURLを作成
-    const apiRooterUrl: string = `${HOST_URL}/api/v1/prefecture/list`;
+    const apiRouterUrl: string = `${HOST_URL}/api/v1/prefecture/list`;
 
     // APIの都道府県一覧を取得する
-    const response = await fetch(apiRooterUrl, {
+    const response = await fetch(apiRouterUrl, {
       // メソッドはGET
       method: 'GET',
 
