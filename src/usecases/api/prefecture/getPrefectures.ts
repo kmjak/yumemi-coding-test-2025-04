@@ -15,7 +15,7 @@ export default async function getPrefectures(): Promise<Prefecture[]> {
     // HOST_URLを取得
     const { HOST_URL } = envConf;
 
-    // HOST_URLがよ読めていない場合はエラーを投げる
+    // HOST_URLが読み込めていない場合はエラーを投げる
     if (HOST_URL === '') {
       throw new Error('HOST_URL is not defined');
     }
