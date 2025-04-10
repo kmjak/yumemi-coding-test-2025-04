@@ -1,3 +1,6 @@
+import { envConf } from '@/conf/env/envConf';
+import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
+
 /**
  * @file getPopulationCompByPrefCode.ts
  * @exports getPopulationCompByPrefCode
@@ -7,9 +10,6 @@
  *
  * @author @kmjak
  */
-
-import { envConf } from '@/conf/env/envConf';
-import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
 
 export default async function getPopulationCompByPrefCode({ prefCode }: { prefCode: number }) {
   // HOST_URLを取得
