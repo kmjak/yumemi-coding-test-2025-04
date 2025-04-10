@@ -4,7 +4,9 @@ import getPopulationCompByPrefCode from '@/usecases/api/populationComp/getPopula
 /**
  * @file usePopulationComp.ts
  * @description 人口構成に関するhandlerをまとめたカスタムフック
- * @returns
+ * @returns {
+ *   handleGetPopulationCompByPrefCode, // 都道府県コードを指定して、人口構成の情報を取得するハンドラー
+ * }
  *
  * @author @kmjak
  */
