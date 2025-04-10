@@ -24,7 +24,7 @@ export default async function getPopulationCompByPrefCode({ prefCode }: { prefCo
   const apiRouterUrl: string = `${HOST_URL}/api/v1/population/comp`;
 
   // APIの都道府県コードを指定して人口構成を取得する
-  const response = await fetch(apiRouterUrl, {
+  const response: Response = await fetch(apiRouterUrl, {
     // メソッドはPOST
     method: 'POST',
 
