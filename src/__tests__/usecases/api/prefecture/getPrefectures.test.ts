@@ -2,7 +2,7 @@ import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 import getPrefectures from '@/usecases/api/prefecture/getPrefectures';
 
 /**
- * @file getPrefecture.test.ts
+ * @file getPrefectures.test.ts
  * @description getPrefecture関数のテスト
  * @see src/usecases/api/prefecture/getPrefectures.ts
  *
