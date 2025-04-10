@@ -73,7 +73,7 @@ describe('fetchPopulationCompByPrefCode', () => {
    *       ],
    *     },
    *   ],
-   *   }
+   * }
    */
   test('人口構成を問題なく取得できる', async (): Promise<void> => {
     // モックのfetch関数を定義
