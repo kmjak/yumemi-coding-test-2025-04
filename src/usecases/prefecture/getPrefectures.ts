@@ -1,5 +1,5 @@
 import { envConf } from '@/conf/env/envConf';
-import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
+import { Prefecture } from '@/types/models/prefecture/Prefecture';
 
 /**
  * @file getPrefectures.ts

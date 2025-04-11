@@ -1,5 +1,5 @@
 import { envConf } from '@/conf/env/envConf';
-import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
+import { PopulationCompResponse } from '@/types/models/populationComp/PopulationCompResponse';
 
 /**
  * @file getPopulationCompByPrefCode.ts

@@ -1,4 +1,4 @@
-import { ApiPath } from '@/types/api/conf/ApiPath';
+import { ApiPath } from '@/types/conf/api/ApiPath';
 
 /**
  * @file apiPath.ts

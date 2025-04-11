@@ -1,4 +1,4 @@
-import fetchPopulationCompByPrefCode from '@/services/api/populationComp/fetchPopulationCompByPrefCode';
+import fetchPopulationCompByPrefCode from '@/services/populationComp/fetchPopulationCompByPrefCode';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**

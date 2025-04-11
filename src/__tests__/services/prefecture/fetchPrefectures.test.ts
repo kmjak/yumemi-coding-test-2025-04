@@ -1,5 +1,5 @@
-import fetchPrefectures from '@/services/api/prefecture/fetchPrefectures';
-import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
+import fetchPrefectures from '@/services/prefecture/fetchPrefectures';
+import { Prefecture } from '@/types/models/prefecture/Prefecture';
 
 /**
  * @file fetchPrefectures.test.ts
@@ -200,7 +200,7 @@ describe('fetchPrefectures', () => {
       },
     }));
 
-    const fetchPrefectures = (await import('@/services/api/prefecture/fetchPrefectures')).default;
+    const fetchPrefectures = (await import('@/services/prefecture/fetchPrefectures')).default;
 
     await expect(fetchPrefectures()).rejects.toThrow('API_ENDPOINT is empty');
   });
@@ -223,7 +223,7 @@ describe('fetchPrefectures', () => {
       },
     }));
 
-    const fetchPrefectures = (await import('@/services/api/prefecture/fetchPrefectures')).default;
+    const fetchPrefectures = (await import('@/services/prefecture/fetchPrefectures')).default;
 
     await expect(fetchPrefectures()).rejects.toThrow('X_API_KEY is empty');
   });
@@ -253,7 +253,7 @@ describe('fetchPrefectures', () => {
       },
     }));
 
-    const fetchPrefectures = (await import('@/services/api/prefecture/fetchPrefectures')).default;
+    const fetchPrefectures = (await import('@/services/prefecture/fetchPrefectures')).default;
 
     await expect(fetchPrefectures()).rejects.toThrow('PREFECTURES is empty');
   });

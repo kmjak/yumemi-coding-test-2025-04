@@ -1,5 +1,5 @@
-import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
-import getPrefectures from '@/usecases/api/prefecture/getPrefectures';
+import { Prefecture } from '@/types/models/prefecture/Prefecture';
+import getPrefectures from '@/usecases/prefecture/getPrefectures';
 
 /**
  * @file getPrefectures.test.ts
@@ -122,7 +122,7 @@ describe('getPrefectures', () => {
       },
     }));
 
-    const getPrefectures = (await import('@/usecases/api/prefecture/getPrefectures')).default;
+    const getPrefectures = (await import('@/usecases/prefecture/getPrefectures')).default;
 
     // getPrefectures関数を実行し、エラーをキャッチ
     await expect(getPrefectures()).rejects.toThrow('HOST_URL is not defined');

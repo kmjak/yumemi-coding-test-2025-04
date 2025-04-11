@@ -1,5 +1,5 @@
-import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
-import getPopulationCompByPrefCode from '@/usecases/api/populationComp/getPopulationCompByPrefCode';
+import { PopulationCompResponse } from '@/types/models/populationComp/PopulationCompResponse';
+import getPopulationCompByPrefCode from '@/usecases/populationComp/getPopulationCompByPrefCode';
 
 /**
  * @file usePopulationComp.ts

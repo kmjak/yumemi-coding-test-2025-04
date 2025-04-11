@@ -1,4 +1,4 @@
-import getPopulationCompByPrefCode from '@/usecases/api/populationComp/getPopulationCompByPrefCode';
+import getPopulationCompByPrefCode from '@/usecases/populationComp/getPopulationCompByPrefCode';
 
 /**
  * @file getPopulationCompByPrefCode.test.ts
@@ -169,7 +169,7 @@ describe('getPopulationCompByPrefCode', () => {
     });
 
     const getPopulationCompByPrefCode = (
-      await import('@/usecases/api/populationComp/getPopulationCompByPrefCode')
+      await import('@/usecases/populationComp/getPopulationCompByPrefCode')
     ).default;
 
     // テスト対象の関数を実行し、エラーをキャッチ

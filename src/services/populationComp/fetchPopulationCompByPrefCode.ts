@@ -2,8 +2,8 @@
 
 import { apiConf } from '@/conf/api/apiConf';
 import { apiPath } from '@/conf/api/apiPath';
-import { ApiConf } from '@/types/api/conf/ApiConf';
-import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
+import { ApiConf } from '@/types/conf/api/ApiConf';
+import { PopulationCompResponse } from '@/types/models/populationComp/PopulationCompResponse';
 
 /**
  * @file fetchPopulationCompByPrefCode.ts
