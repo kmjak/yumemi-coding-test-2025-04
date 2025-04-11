@@ -4,6 +4,7 @@ import { PopulationCompResponse } from '@/types/models/populationComp/Population
 /**
  * @file fetchPopulationCompByPrefCode.test.ts
  * @description fetchPopulationCompByPrefCode関数のテスト
+ * @see src/services/populationComp/fetchPopulationCompByPrefCode.ts
  *
  * @author @kmjak
  */
@@ -11,7 +12,7 @@ import { PopulationCompResponse } from '@/types/models/populationComp/Population
 /**
  * apiConfのモック
  * APIのエンドポイントとAPIキーをモックする
- * @see src/conf/api/apiConf.ts
+ * @see src/conf/apiConf.ts
  */
 jest.mock('@/conf/api/apiConf', () => ({
   apiConf: {
@@ -23,7 +24,7 @@ jest.mock('@/conf/api/apiConf', () => ({
 /**
  * apiPathのモック
  * 人口構成を取得するAPIのパスをモックする
- * @see src/conf/api/apiPath.ts
+ * @see src/conf/apiPath.ts
  */
 jest.mock('@/conf/api/apiPath', () => ({
   apiPath: {
@@ -56,7 +57,7 @@ describe('fetchPopulationCompByPrefCode', () => {
    * 都道府県コードを指定して人口構成を取得できる
    *
    * @expect
-   * result : {
+   * {
    *   boundaryYear: 2020,
    *   data: [
    *     {
@@ -205,7 +206,7 @@ describe('fetchPopulationCompByPrefCode', () => {
    * テストケース: レスポンスデータにresultがない場合
    *
    * @expect
-   *
+   * No result in response
    */
   test('レスポンスデータにresultがない場合「No result in response」とエラーを投げる', async (): Promise<void> => {
     // モックのfetch関数を定義
