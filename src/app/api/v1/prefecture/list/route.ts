@@ -1,4 +1,4 @@
-import fetchPrefectures from '@/services/api/prefecture/fetchPrefectures';
+import fetchPrefectures from '@/services/prefecture/fetchPrefectures';
 import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
 import { NextResponse } from 'next/server';
 

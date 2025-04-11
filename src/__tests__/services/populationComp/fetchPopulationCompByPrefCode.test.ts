@@ -1,4 +1,4 @@
-import fetchPopulationCompByPrefCode from '@/services/api/populationComp/fetchPopulationCompByPrefCode';
+import fetchPopulationCompByPrefCode from '@/services/populationComp/fetchPopulationCompByPrefCode';
 import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
 
 /**
@@ -251,7 +251,7 @@ describe('fetchPopulationCompByPrefCode', () => {
     }));
 
     const fetchPopulationCompByPrefCode = (
-      await import('@/services/api/populationComp/fetchPopulationCompByPrefCode')
+      await import('@/services/populationComp/fetchPopulationCompByPrefCode')
     ).default;
 
     // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
@@ -279,7 +279,7 @@ describe('fetchPopulationCompByPrefCode', () => {
     }));
 
     const fetchPopulationCompByPrefCode = (
-      await import('@/services/api/populationComp/fetchPopulationCompByPrefCode')
+      await import('@/services/populationComp/fetchPopulationCompByPrefCode')
     ).default;
 
     // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
@@ -314,7 +314,7 @@ describe('fetchPopulationCompByPrefCode', () => {
     }));
 
     const fetchPopulationCompByPrefCode = (
-      await import('@/services/api/populationComp/fetchPopulationCompByPrefCode')
+      await import('@/services/populationComp/fetchPopulationCompByPrefCode')
     ).default;
 
     // fetchPopulationCompByPrefCode関数を実行してエラーをキャッチ
