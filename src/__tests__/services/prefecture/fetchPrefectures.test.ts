@@ -4,6 +4,7 @@ import { Prefecture } from '@/types/models/prefecture/Prefecture';
 /**
  * @file fetchPrefectures.test.ts
  * @description fetchPrefectures関数のテスト
+ * @see src/services/prefecture/fetchPrefectures.ts
  *
  * @author @kmjak
  */
@@ -11,7 +12,7 @@ import { Prefecture } from '@/types/models/prefecture/Prefecture';
 /**
  * apiConfのモック
  * APIのエンドポイントとAPIキーをモックする
- * @see src/conf/api/apiConf.ts
+ * @see src/conf/apiConf.ts
  */
 jest.mock('@/conf/api/apiConf', () => ({
   apiConf: {
@@ -23,7 +24,7 @@ jest.mock('@/conf/api/apiConf', () => ({
 /**
  * apiPathのモック
  * 都道府県一覧を取得するAPIのパスをモックする
- * @see src/conf/api/apiPath.ts
+ * @see src/conf/apiPath.ts
  */
 jest.mock('@/conf/api/apiPath', () => ({
   apiPath: {
@@ -31,12 +32,6 @@ jest.mock('@/conf/api/apiPath', () => ({
   },
 }));
 
-/**
- * テストケース: fetchPrefectures
- * 都道府県一覧を取得する関数のテスト
- *
- * @author @kmjak
- */
 describe('fetchPrefectures', () => {
   // 元のfetchを保存する変数
   let originalFetch: typeof global.fetch;
@@ -62,7 +57,7 @@ describe('fetchPrefectures', () => {
    * 都道府県一覧を取得できる
    *
    * @expect
-   * result : [
+   * [
    *   {
    *     prefCode: 1,
    *     prefName: '北海道',
