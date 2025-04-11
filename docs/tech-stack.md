@@ -22,7 +22,7 @@
 
 ## 状態管理
 
--- **Jotai**
+- **Jotai**
 
 ## Hosting
 
