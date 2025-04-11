@@ -1,9 +1,10 @@
+import { PopulationCompResponse } from '@/types/models/populationComp/PopulationCompResponse';
 import getPopulationCompByPrefCode from '@/usecases/populationComp/getPopulationCompByPrefCode';
 
 /**
  * @file getPopulationCompByPrefCode.test.ts
  * @description getPopulationCompByPrefCode関数のテスト
- * @see src/usecases/api/populationComp/getPopulationCompByPrefCode.ts
+ * @see src/usecases/populationComp/getPopulationCompByPrefCode.ts
  *
  * @author @kmjak
  */
@@ -12,7 +13,6 @@ import getPopulationCompByPrefCode from '@/usecases/populationComp/getPopulation
  * envConfのモック
  * HOST_URLをモックする
  * @see src/conf/env/envConf.ts
- *
  */
 jest.mock('@/conf/env/envConf', () => ({
   envConf: {
@@ -89,10 +89,10 @@ describe('getPopulationCompByPrefCode', () => {
     });
 
     // テスト対象の関数を実行
-    const result = await getPopulationCompByPrefCode({ prefCode: 1 });
+    const response: PopulationCompResponse = await getPopulationCompByPrefCode({ prefCode: 1 });
 
     // 結果の検証
-    expect(result).toEqual({
+    expect(response).toEqual({
       boundaryYear: 2020,
       data: [
         {
