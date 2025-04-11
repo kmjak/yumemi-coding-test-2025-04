@@ -20,6 +20,10 @@
 
 - **Jest**
 
+## 状態管理
+
+-- **Jotai**
+
 ## Hosting
 
 - **AWS Amplify**
