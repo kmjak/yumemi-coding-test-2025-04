@@ -1,4 +1,4 @@
-import { PopulationComp } from '@/types/api/models/populationComp/PopulationComp';
+import { PopulationComp } from '@/types/models/populationComp/PopulationComp';
 
 /**
  * fetchPopulationCompByPrefCodeのレスポンスのデータ構造

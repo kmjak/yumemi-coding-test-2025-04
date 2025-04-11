@@ -1,4 +1,4 @@
-import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
+import { Prefecture } from '@/types/models/prefecture/Prefecture';
 import getPrefectures from '@/usecases/api/prefecture/getPrefectures';
 
 /**

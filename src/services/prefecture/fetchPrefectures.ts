@@ -2,7 +2,7 @@
 
 import { apiConf } from '@/conf/api/apiConf';
 import { apiPath } from '@/conf/api/apiPath';
-import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
+import { Prefecture } from '@/types/models/prefecture/Prefecture';
 
 /**
  * @file fetchPrefectures.ts

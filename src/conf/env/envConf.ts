@@ -1,4 +1,4 @@
-import { EnvConf } from '@/types/env/EnvConf';
+import { EnvConf } from '@/types/conf/env/EnvConf';
 
 /**
  * @file envConf.ts

@@ -1,5 +1,5 @@
 import fetchPopulationCompByPrefCode from '@/services/populationComp/fetchPopulationCompByPrefCode';
-import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
+import { PopulationCompResponse } from '@/types/models/populationComp/PopulationCompResponse';
 
 /**
  * @file fetchPopulationCompByPrefCode.test.ts

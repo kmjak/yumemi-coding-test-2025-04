@@ -1,4 +1,4 @@
-import { PopulationCompResponse } from '@/types/api/models/populationComp/PopulationCompResponse';
+import { PopulationCompResponse } from '@/types/models/populationComp/PopulationCompResponse';
 import getPopulationCompByPrefCode from '@/usecases/api/populationComp/getPopulationCompByPrefCode';
 
 /**

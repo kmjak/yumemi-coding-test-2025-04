@@ -1,5 +1,5 @@
 import fetchPrefectures from '@/services/prefecture/fetchPrefectures';
-import { Prefecture } from '@/types/api/models/prefecture/Prefecture';
+import { Prefecture } from '@/types/models/prefecture/Prefecture';
 
 /**
  * @file fetchPrefectures.test.ts
