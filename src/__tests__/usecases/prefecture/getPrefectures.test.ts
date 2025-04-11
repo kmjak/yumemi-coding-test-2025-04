@@ -4,7 +4,7 @@ import getPrefectures from '@/usecases/prefecture/getPrefectures';
 /**
  * @file getPrefectures.test.ts
  * @description getPrefecture関数のテスト
- * @see src/usecases/api/prefecture/getPrefectures.ts
+ * @see src/usecases/prefecture/getPrefectures.ts
  *
  * @author @kmjak
  */
@@ -13,7 +13,6 @@ import getPrefectures from '@/usecases/prefecture/getPrefectures';
  * envConfのモック
  * HOST_URLをモックする
  * @see src/conf/env/envConf.ts
- *
  */
 jest.mock('@/conf/env/envConf', () => ({
   envConf: {
