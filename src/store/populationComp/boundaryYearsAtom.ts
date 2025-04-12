@@ -4,8 +4,8 @@ import { atom } from 'jotai';
 /**
  * @file boundaryYearsAtom.ts
  * @description 人口構成の区切り年を管理するatom
- * @exports boundaryYearAtom
+ * @exports boundaryYearsAtom
  *
  * @author @kmjak
  */
-export const boundaryYearAtom = atom<BoundaryYears>();
+export const boundaryYearsAtom = atom<BoundaryYears>();
