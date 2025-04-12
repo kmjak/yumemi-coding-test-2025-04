@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 import cn from '@/utils/tailwind/cn';
 
-interface LabelProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 /**
  * @file InputのUIコンポーネント
@@ -14,7 +14,7 @@ interface LabelProps extends React.InputHTMLAttributes<HTMLInputElement> {}
  * @author @kmjak
  */
 
-export default function Input({ className, ...props }: LabelProps): JSX.Element {
+export default function Input({ className, ...props }: InputProps): JSX.Element {
   return (
     <input
       className={cn(
