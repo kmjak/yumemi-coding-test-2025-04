@@ -8,4 +8,4 @@ import { atom } from 'jotai';
  *
  * @author @kmjak
  */
-export const populationCompByPrefCodesAtom = atom<PopulationCompByPrefCodes>();
+export const populationCompByPrefCodesAtom = atom<PopulationCompByPrefCodes>({});

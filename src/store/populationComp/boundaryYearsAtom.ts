@@ -8,4 +8,4 @@ import { atom } from 'jotai';
  *
  * @author @kmjak
  */
-export const boundaryYearsAtom = atom<BoundaryYears>();
+export const boundaryYearsAtom = atom<BoundaryYears>({});
