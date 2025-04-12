@@ -16,7 +16,7 @@ interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
  * @author @kmjak
  */
 
-export default function Label({ children, className, ...props }: LabelProps) {
+export default function Label({ children, className, ...props }: LabelProps): JSX.Element {
   return (
     <label
       className={cn('text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl peer', className)}
