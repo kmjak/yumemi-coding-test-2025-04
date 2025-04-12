@@ -1,6 +1,8 @@
 import { JSX } from 'react';
 import cn from '@/utils/tailwind/cn';
 
+interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+
 /**
  * @file CheckboxのUIコンポーネント
  * @description チェックボックスのUIコンポーネントを提供します。
@@ -10,8 +12,6 @@ import cn from '@/utils/tailwind/cn';
  *
  * @author @kmjak
  */
-
-interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 export default function Checkbox({ className, ...props }: CheckboxProps): JSX.Element {
   return (
