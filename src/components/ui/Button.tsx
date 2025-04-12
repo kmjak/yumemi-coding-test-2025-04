@@ -19,7 +19,7 @@ export default function Button({ children, className, ...props }: ButtonProps): 
   return (
     <button
       className={cn(
-        'outline-none rounded-lg bg-blue-600 hover:bg-blue-800 duration-200 text-base sm:text-lg md:text-xl lg:text-2xl px-2 py-1 md:px-3 md:py-2 lg:px-4',
+        'outline-none rounded-lg bg-blue-600 hover:bg-blue-800 duration-200 text-sm sm:text-base md:text-lg lg:text-xl px-2 py-1 md:px-3 md:py-2 lg:px-4',
         className
       )}
       {...props}
