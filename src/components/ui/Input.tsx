@@ -7,7 +7,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
  * @file InputのUIコンポーネント
  * @description InputのUIコンポーネントを提供します。
  * @param {string} className - 追加のクラス名
- * @param {React.InputHTMLAttributes<HTMLLabelElement>} props - その他のプロパティ
+ * @param {React.InputHTMLAttributes<HTMLInputElement>} props - その他のプロパティ
  * @returns {JSX.Element} InputのUIコンポーネント
  *
  * @author @kmjak
