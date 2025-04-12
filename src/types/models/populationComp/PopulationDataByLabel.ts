@@ -11,5 +11,5 @@ import { YearlyPopulationData } from './YearlyPopulationData';
  * @author @kmjak
  */
 export type PopulationDataByLabel = {
-  [Label in PopulationLabel]?: YearlyPopulationData[];
+  [Key in PopulationLabel]?: YearlyPopulationData[];
 };
