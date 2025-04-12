@@ -18,7 +18,7 @@ export default function Checkbox({ className, ...props }: CheckboxProps): JSX.El
     <input
       type="checkbox"
       className={cn(
-        'peer appearance-none w-5 h-5 border border-gray-300 rounded-sm checked:bg-blue-600 checked:border-transparent',
+        'peer w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 appearance-none border border-gray-300 rounded-sm checked:bg-blue-600 checked:border-transparent',
         className
       )}
       {...props}
