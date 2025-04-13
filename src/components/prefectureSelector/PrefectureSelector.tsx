@@ -26,7 +26,7 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
   const { checkedPrefectures, handleTogglePrefCode } = usePrefecture();
 
   return (
-    <section className="flex flex-col gap-6 w-full">
+    <section className="flex flex-col gap-3 sm:gap-3 md:gap-4 lg:gap-6 w-full">
       <PrefectureCheckboxList
         prefectures={prefectures}
         checkedPrefectures={checkedPrefectures}

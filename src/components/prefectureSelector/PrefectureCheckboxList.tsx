@@ -33,12 +33,12 @@ export default function PrefectureCheckboxList({
   handleTogglePrefCode,
 }: PrefectureCheckboxListProps): JSX.Element {
   return (
-    <fieldset className="flex flex-wrap gap-4 w-full px-4">
-      <legend className="text-xl sm:text-2xl md:text-3xl font-bold text-center py-4">
+    <fieldset className="flex flex-wrap gap-2 w-full px-4">
+      <legend className="text-xl md:text-2xl font-bold text-center py-4">
         都道府県一覧チェックボックス
       </legend>
       {prefectures.map((prefecture) => (
-        <div key={prefecture.prefCode} className="flex items-center">
+        <div key={prefecture.prefCode} className="flex items-center w-20 md:w-24 lg:w-28">
           <Checkbox
             id={`prefecture-${prefecture.prefCode}`}
             checked={checkedPrefectures.includes(prefecture.prefCode)}
@@ -46,7 +46,7 @@ export default function PrefectureCheckboxList({
           />
           <Label
             htmlFor={`prefecture-${prefecture.prefCode}`}
-            className="pl-2 text-sm sm:text-base md:text-lg lg:text-xl"
+            className="pl-1 md:pl-2 text-xs sm:text-sm md:text-base lg:text-lg"
           >
             {prefecture.prefName}
           </Label>
