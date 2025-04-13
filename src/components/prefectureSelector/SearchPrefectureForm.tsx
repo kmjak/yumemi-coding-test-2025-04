@@ -68,7 +68,7 @@ export default function SearchPrefectureForm({
         }
         className={`${
           prefectures.some((prefecture: Prefecture) => prefecture.prefName === searchPrefName)
-            ? 'bg-blue-700 hover:bg-blue-00'
+            ? 'bg-blue-700 hover:bg-blue-800'
             : 'bg-gray-700 hover:bg-gray-700 cursor-not-allowed'
         }`}
       >
