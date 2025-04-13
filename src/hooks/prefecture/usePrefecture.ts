@@ -26,10 +26,9 @@ export default function usePrefecture(): {
    */
   const handleTogglePrefCode = ({ prefCode }: { prefCode: number }): void => {
     if (checkedPrefectures.includes(prefCode)) {
-      setCheckedPrefectures(checkedPrefectures.filter((code) => code !== prefCode));
+      setCheckedPrefectures((prev) => prev.filter((code) => code !== prefCode));
     } else {
-      setCheckedPrefectures([...checkedPrefectures, prefCode]);
-    }
+      setCheckedPrefectures((prev) => [...prev, prefCode]);
   };
 
   return { checkedPrefectures, handleTogglePrefCode };
