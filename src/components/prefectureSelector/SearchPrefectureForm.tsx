@@ -8,30 +8,30 @@ import { Prefecture } from '@/types/models/prefecture/Prefecture';
 /**
  * @description SearchPrefectureFormPropsの型定義
  * @property {Prefecture[]} prefectures - 都道府県の配列
- * @property {function} handleTogglePrefCode - 都道府県コードを受け取り、チェックボックスの状態のオンオフを切り替える関数
+ * @property {function} handlePrefectureSelection - 都道府県コードを受け取り、チェックボックスの状態のオンオフを切り替える関数
  */
 interface SearchPrefectureFormProps {
   prefectures: Prefecture[];
-  handleTogglePrefCode: ({ prefCode }: { prefCode: number }) => void;
+  handlePrefectureSelection: ({ prefCode }: { prefCode: number }) => void;
 }
 
 /**
  * @file SearchPrefectureForm.tsx
- * @description 都道府県名を入力し、該当する都道府県コードを取得してhandleTogglePrefCodeを実行するコンポーネント
+ * @description 都道府県名を入力し、該当する都道府県コードを取得してhandlePrefectureSelectionを実行するコンポーネント
  * @param {Prefecture[]} prefectures - 都道府県の配列
- * @param {function} handleTogglePrefCode - 都道府県コードを受け取り、チェックボックスの状態のオンオフを切り替える関数
- * @returns {JSX.Element} - 都道府県名を入力し、該当する都道府県コードを取得してhandleTogglePrefCodeを実行するコンポーネント
+ * @param {function} handlePrefectureSelection - 都道府県コードを受け取り、チェックボックスの状態のオンオフを切り替える関数
+ * @returns {JSX.Element} - 都道府県名を入力し、該当する都道府県コードを取得してhandlePrefectureSelectionを実行するコンポーネント
  *
  * @author @kmjak
  */
 export default function SearchPrefectureForm({
   prefectures,
-  handleTogglePrefCode,
+  handlePrefectureSelection,
 }: SearchPrefectureFormProps): JSX.Element {
   const [searchPrefName, setSearchPrefName] = useState<string>('');
 
   /**
-   * @description 都道府県名を入力し、該当する都道府県コードを取得してhandleTogglePrefCodeを実行する
+   * @description 都道府県名を入力し、該当する都道府県コードを取得してhandlePrefectureSelectionを実行する
    * @param {React.FormEvent<HTMLFormElement>} event - フォームのsubmitイベント
    * @returns {void}
    */
@@ -39,7 +39,7 @@ export default function SearchPrefectureForm({
     event.preventDefault();
     const matchedPref = prefectures.find((pref) => pref.prefName === searchPrefName);
     if (matchedPref) {
-      handleTogglePrefCode({ prefCode: matchedPref.prefCode });
+      handlePrefectureSelection({ prefCode: matchedPref.prefCode });
       setSearchPrefName('');
     } else {
       alert('該当する都道府県が見つかりませんでした');
