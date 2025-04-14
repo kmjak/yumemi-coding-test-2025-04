@@ -9,12 +9,12 @@ import { Prefecture } from '@/types/models/prefecture/Prefecture';
  * @description PrefectureCheckboxListPropsの型定義
  * @property {Prefecture[]} prefectures - 都道府県の配列
  * @property {number[]} checkedPrefectures - チェックされている都道府県コードの配列
- * @property {function} handleTogglePrefCode - 都道府県コードを受け取り、チェックボックスの状態のオンオフを切り替える関数
+ * @property {function} handlePrefectureSelection - 都道府県コードを受け取り、チェックボックスの状態のオンオフを切り替える関数
  */
 interface PrefectureCheckboxListProps {
   prefectures: Prefecture[];
   checkedPrefectures: number[];
-  handleTogglePrefCode: ({ prefCode }: { prefCode: number }) => void;
+  handlePrefectureSelection: ({ prefCode }: { prefCode: number }) => void;
 }
 
 /**
@@ -22,7 +22,7 @@ interface PrefectureCheckboxListProps {
  * @description 都道府県のチェックボックスリストを表示するコンポーネント
  * @param {Prefecture[]} prefectures - 都道府県の配列
  * @param {number[]} checkedPrefectures - チェックされている都道府県コードの配列
- * @param {function} handleTogglePrefCode - 都道府県コードを受け取り、チェックボックスの状態のオンオフを切り替える関数
+ * @param {function} handlePrefectureSelection - 都道府県コードを受け取り、チェックボックスの状態のオンオフを切り替える関数
  * @returns {JSX.Element} - 都道府県のチェックボックスリストを表示するコンポーネント
  *
  * @author @kmjak
@@ -30,7 +30,7 @@ interface PrefectureCheckboxListProps {
 export default function PrefectureCheckboxList({
   prefectures,
   checkedPrefectures,
-  handleTogglePrefCode,
+  handlePrefectureSelection,
 }: PrefectureCheckboxListProps): JSX.Element {
   return (
     <fieldset className="flex flex-wrap gap-2 w-full px-4">
@@ -42,7 +42,7 @@ export default function PrefectureCheckboxList({
           <Checkbox
             id={`prefecture-${prefecture.prefCode}`}
             checked={checkedPrefectures.includes(prefecture.prefCode)}
-            onChange={() => handleTogglePrefCode({ prefCode: prefecture.prefCode })}
+            onChange={() => handlePrefectureSelection({ prefCode: prefecture.prefCode })}
           />
           <Label
             htmlFor={`prefecture-${prefecture.prefCode}`}
