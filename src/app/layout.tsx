@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import { Amplify } from 'aws-amplify';
+import { amplifyConf } from '@/conf/amplify/amplifyConf';
+import ConfigureAmplifyClientSide from '@/components/amplify/ConfigureAmplifyClientSide';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,6 +36,9 @@ export const metadata: Metadata = {
     '都道府県別の総人口推移を視覚的に比較できるインタラクティブなアプリケーションです。地域ごとの人口変化を年代別に追跡し、日本の人口動態の全体像を把握できます。',
 };
 
+// AWS Amplifyの設定
+Amplify.configure(amplifyConf, { ssr: true });
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,6 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <ConfigureAmplifyClientSide amplifyConf={amplifyConf} />
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   );
