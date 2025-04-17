@@ -1,0 +1,20 @@
+projects:
+  Codegen Project:
+    schemaPath: schema.json
+    includes:
+      - src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+      - src/types/models/graphql/GraphqlSchema.ts
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/types/models/graphql/GraphqlSchema.ts
+        docsFilePath: src/graphql
+        # リージョンを変更してください
+        region: your-region
+        # API IDを変更してください
+        apiId: your-api-id
+        frontend: javascript
+        framework: react
+        maxDepth: 2
