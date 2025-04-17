@@ -39,10 +39,6 @@ const eslintConfig = [
           selector: 'typeLike',
           format: ['PascalCase'],
         },
-        {
-          selector: 'interfaceMember',
-          format: ['camelCase', 'PascalCase'],
-        },
       ],
       'react/react-in-jsx-scope': 'off',
       'prettier/prettier': 'error',
