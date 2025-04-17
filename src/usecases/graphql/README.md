@@ -1,0 +1,1 @@
+このディレクトリは、graphql(Appsync)に関するusecasesを格納するディレクトリ
