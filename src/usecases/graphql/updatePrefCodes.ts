@@ -27,14 +27,16 @@ export default async function updatePrefCodes({
   prefCode,
 }: UpdatePrefCodesProps): Promise<boolean> {
   const client = generateClient();
+  const prefCodes = checkedPrefectures.includes(prefCode)
+    ? checkedPrefectures.filter((code) => code !== prefCode)
+    : [...checkedPrefectures, prefCode];
+
   try {
     const response = await client.graphql({
       query: updateYumemiCodingTest202504,
       variables: {
         input: {
-          prefCodes: checkedPrefectures.includes(prefCode)
-            ? checkedPrefectures.filter((code) => code !== prefCode)
-            : [...checkedPrefectures, prefCode],
+          prefCodes,
           roomId,
         },
       },
