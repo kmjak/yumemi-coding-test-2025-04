@@ -41,7 +41,7 @@ export default async function updatePrefCodes({
     });
 
     if (response.errors || !response.data?.updateYumemiCodingTest202504) {
-      throw new Error('部屋の作成に失敗しました');
+      throw new Error('部屋の都道府県コードの更新に失敗しました');
     }
     return true;
   } catch (error) {
