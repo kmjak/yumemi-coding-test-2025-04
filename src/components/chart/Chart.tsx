@@ -105,7 +105,6 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
           return newBoundary;
         });
       } else if (action === 'deleteAll') {
-        console.log('deleteAll');
         // actionがdeleteAllの場合は、全ての都道府県コードを指定してpopulationByPrefCodeとboundaryYearsから削除
         setPopulationByPrefCode({});
         setBoundaryYears({});
