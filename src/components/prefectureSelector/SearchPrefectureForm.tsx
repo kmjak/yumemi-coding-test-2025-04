@@ -47,7 +47,7 @@ export default function SearchPrefectureForm({
   };
 
   return (
-    <form className="flex justify-center gap-2" onSubmit={handleSearchSelect}>
+    <form className="flex justify-center items-center gap-2" onSubmit={handleSearchSelect}>
       <Input
         list="prefecture-list"
         type="text"
