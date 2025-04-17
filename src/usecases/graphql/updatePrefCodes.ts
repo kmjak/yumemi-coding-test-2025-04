@@ -17,7 +17,7 @@ interface UpdatePrefCodes {
  * @file updatePrefCodes.ts
  * @description Appsyncを使って、dynamodbの部屋の都道府県コードを更新する関数
  * @param {UpdatePrefCodesProps} props - 部屋のIDや選択された都道府県番号など
- * @returns {Promise<number[]>} - 成功した場合はtrue、失敗した場合はエラーを投げる
+ * @returns {Promise<boolean>} - 成功した場合はtrue、失敗した場合はエラーを投げる
  *
  * @author @kmjak
  */
