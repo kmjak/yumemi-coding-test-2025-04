@@ -105,10 +105,7 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
   const commonYears: number[] =
     yearArrays.length === 0
       ? []
-      : yearArrays.reduce((acc, years) => {
-          if (acc === null) return years;
-          return acc.filter((year) => years.includes(year));
-        }) ?? [];
+      : yearArrays.reduce((acc, years) => acc.filter((year) => years.includes(year)));
 
   // labelを昇順にする
   const labels: number[] = commonYears.sort((a, b) => a - b);
