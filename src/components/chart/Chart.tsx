@@ -50,10 +50,13 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
       // prefectureSelectionActionからactionとprefCodeを取得
       const { action, prefCode } = prefectureSelectionAction;
 
-      // actionまたはprefCodeがundefinedの場合は何もしない
-      if (action === undefined || prefCode === undefined) return;
+      // actionがundefinedの場合は何もしない
+      if (action === undefined) return;
 
       if (action === 'insert') {
+        // prefCodeがundefinedの場合は何もしない
+        if (prefCode === undefined) return;
+
         // actionがinsertの場合は、都道府県コードを指定して人口構成データを取得
         const populationCompResponse: PopulationCompResponse | undefined =
           await handleGetPopulationCompByPrefCode({
@@ -68,7 +71,10 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
 
         // boundaryYearとpopulationCompが存在する場合は、都道府県コードを指定してpopulationByPrefCodeとboundaryYearsに追加
         if (boundaryYear && populationCompData) {
+          // boundaryYearsにboundaryYearを追加
           setBoundaryYears((prev) => ({ ...prev, [prefCode]: boundaryYear }));
+
+          // populationByPrefCodeにラベルごとの人口構成データを追加
           setPopulationByPrefCode((prev) => ({
             ...prev,
             [prefCode]: {
@@ -81,16 +87,27 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
         }
       } else if (action === 'delete') {
         // actionがdeleteの場合は、都道府県コードを指定してpopulationByPrefCodeとboundaryYearsから削除
+
+        // prefCodeがundefinedの場合は何もしない
+        if (prefCode === undefined) return;
+
+        // populationByPrefCodeからprefCodeを削除
         setPopulationByPrefCode((prev) => {
           const newPopulationByPrefCode = { ...prev };
           delete newPopulationByPrefCode[prefCode];
           return newPopulationByPrefCode;
         });
+
+        // boundaryYearsからprefCodeを削除
         setBoundaryYears((prev) => {
           const newBoundary = { ...prev };
           delete newBoundary[prefCode];
           return newBoundary;
         });
+      } else if (action === 'deleteAll') {
+        // actionがdeleteAllの場合は、全ての都道府県コードを指定してpopulationByPrefCodeとboundaryYearsから削除
+        setPopulationByPrefCode({});
+        setBoundaryYears({});
       }
     };
 

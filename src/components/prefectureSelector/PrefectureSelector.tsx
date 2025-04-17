@@ -7,6 +7,7 @@ import PrefectureCheckboxList from './PrefectureCheckboxList';
 import usePrefecture from '@/hooks/prefecture/usePrefecture';
 import { useSetAtom } from 'jotai';
 import { prefectureSelectionActionAtom } from '@/store/prefectureSelection/prefectureSelectionActionAtom';
+import DeselectAll from './DeselectAll';
 
 /**
  * @description PrefectureSelectorPropsの型定義
@@ -25,7 +26,7 @@ interface PrefectureSelectorProps {
  * @author @kmjak
  */
 export default function PrefectureSelector({ prefectures }: PrefectureSelectorProps): JSX.Element {
-  const { checkedPrefectures, handleTogglePrefCode } = usePrefecture();
+  const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll } = usePrefecture();
   const setPrefectureSelectionAction = useSetAtom(prefectureSelectionActionAtom);
 
   /**
@@ -52,6 +53,17 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
     }
   };
 
+  /**
+   * @description 全てのチェックボックスの状態を外す処理
+   * @returns {void}
+   */
+  const handleDeselectAllPrefCodes = (): void => {
+    handleDeselectAll();
+    setPrefectureSelectionAction({
+      action: 'deleteAll',
+    });
+  };
+
   return (
     <section className="flex flex-col gap-3 sm:gap-3 md:gap-4 lg:gap-6 w-full">
       <PrefectureCheckboxList
@@ -59,10 +71,13 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
         checkedPrefectures={checkedPrefectures}
         handlePrefectureSelection={handlePrefectureSelection}
       />
-      <SearchPrefectureForm
-        prefectures={prefectures}
-        handlePrefectureSelection={handlePrefectureSelection}
-      />
+      <div className="md:flex md:justify-center items-center">
+        <SearchPrefectureForm
+          prefectures={prefectures}
+          handlePrefectureSelection={handlePrefectureSelection}
+        />
+        <DeselectAll handleDeselectAllPrefCodes={handleDeselectAllPrefCodes} />
+      </div>
     </section>
   );
 }
