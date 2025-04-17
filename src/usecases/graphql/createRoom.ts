@@ -20,7 +20,7 @@ interface CreateRoomProps {
 export default async function createRoom({ roomId }: CreateRoomProps): Promise<boolean> {
   const client = generateClient();
   try {
-    const response = client.graphql({
+    const response = await client.graphql({
       query: createYumemiCodingTest202504,
       variables: {
         input: {
@@ -29,7 +29,11 @@ export default async function createRoom({ roomId }: CreateRoomProps): Promise<b
         },
       },
     });
-    const result = await response;
+
+    if (response.errors || !response.data?.createYumemiCodingTest202504) {
+      throw new Error('部屋の作成に失敗しました');
+    }
+
     return true;
   } catch (error) {
     if (error instanceof Error) {
