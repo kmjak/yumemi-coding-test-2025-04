@@ -8,6 +8,7 @@ import { useState } from 'react';
  * @returns {
  *  checkedPrefectures: number[],
  *  handleTogglePrefCode: ({ prefCode }: { prefCode: number }) => void,
+ *  handleDeselectAll: () => void
  * }
  *
  * @author @kmjak
@@ -16,6 +17,7 @@ import { useState } from 'react';
 export default function usePrefecture(): {
   checkedPrefectures: number[];
   handleTogglePrefCode: ({ prefCode }: { prefCode: number }) => boolean;
+  handleDeselectAll: () => void;
 } {
   const [checkedPrefectures, setCheckedPrefectures] = useState<number[]>([]);
 
@@ -33,5 +35,10 @@ export default function usePrefecture(): {
     return true;
   };
 
-  return { checkedPrefectures, handleTogglePrefCode };
+  const handleDeselectAll = (): void => {
+    setCheckedPrefectures([]);
+    return;
+  };
+
+  return { checkedPrefectures, handleTogglePrefCode, handleDeselectAll };
 }
