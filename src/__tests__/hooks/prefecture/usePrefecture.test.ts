@@ -59,7 +59,7 @@ describe('usePrefecture', () => {
       expect(isChecked).toBe(false);
     });
 
-    expect(result.current.checkedPrefectures).not.toEqual([1]);
+    expect(result.current.checkedPrefectures).toEqual([]);
   });
 
   /**
