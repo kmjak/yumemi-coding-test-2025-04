@@ -71,7 +71,7 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
 
         // boundaryYearとpopulationCompが存在する場合は、都道府県コードを指定してpopulationByPrefCodeとboundaryYearsに追加
         if (boundaryYear && populationCompData) {
-          // boundaryYearsにboudaryYearを追加
+          // boundaryYearsにboundaryYearを追加
           setBoundaryYears((prev) => ({ ...prev, [prefCode]: boundaryYear }));
 
           // populationByPrefCodeにラベルごとの人口構成データを追加
