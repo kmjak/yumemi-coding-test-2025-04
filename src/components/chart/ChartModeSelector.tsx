@@ -27,7 +27,7 @@ export default function ChartModeSelector({ setChartMode }: ChartModeSelectorPro
    * @returns {void}
    */
   const handleChangeMode = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-    const selectedMode = event.target.value;
+    const selectedMode: string = event.target.value;
     if (['total', 'young', 'working', 'elderly'].includes(selectedMode)) {
       const mode: PopulationLabel = selectedMode as PopulationLabel;
       setChartMode(mode);
