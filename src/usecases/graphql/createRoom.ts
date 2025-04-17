@@ -12,7 +12,7 @@ interface CreateRoomProps {
 /**
  * @file createRoom.ts
  * @description Appsyncを使って、dynamodbに部屋を登録する関数
- * @param {CreateRoomProps} roomId - 部屋のID
+ * @param {CreateRoomProps} props - 部屋のIDなど
  * @returns {Promise<boolean>} - 成功した場合はtrue、失敗した場合はエラーを投げる
  *
  * @author @kmjak
