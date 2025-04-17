@@ -49,7 +49,7 @@ export default function ChartRender({
     return (
       <div className="mx-3 my-2 sm:my-3 md:my-4 lg:my-6">
         <div className="max-w-5xl h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px] border border-gray-300 rounded-lg shadow-md p-2 md:p-4 mx-auto flex items-center justify-center">
-          <p className="text-gray-500">都道府県を選択してください</p>
+          <p className="text-gray-200">都道府県を選択してください</p>
         </div>
       </div>
     );
