@@ -1,5 +1,6 @@
 'use client';
 
+import isValidPrefCode from '@/utils/prefecture/isValidPrefCode';
 import { useState } from 'react';
 
 /**
@@ -27,6 +28,11 @@ export default function usePrefecture(): {
    * @returns {boolean}
    */
   const handleTogglePrefCode = ({ prefCode }: { prefCode: number }): boolean => {
+    // prefCodeが1から47の整数であるかをチェックする
+    if (!isValidPrefCode({ prefCode })) {
+      return false;
+    }
+    // チェックボックスの状態を切り替える
     if (checkedPrefectures.includes(prefCode)) {
       setCheckedPrefectures((prev) => prev.filter((code) => code !== prefCode));
       return false;
