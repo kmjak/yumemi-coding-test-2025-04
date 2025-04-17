@@ -26,7 +26,7 @@ interface PrefectureSelectorProps {
  * @author @kmjak
  */
 export default function PrefectureSelector({ prefectures }: PrefectureSelectorProps): JSX.Element {
-  const { checkedPrefectures, handleTogglePrefCode } = usePrefecture();
+  const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll } = usePrefecture();
   const setPrefectureSelectionAction = useSetAtom(prefectureSelectionActionAtom);
 
   /**
@@ -53,6 +53,17 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
     }
   };
 
+  /**
+   * @description 全てのチェックボックスの状態を外す処理
+   * @returns {void}
+   */
+  const handleDeselectAllPrefCodes = (): void => {
+    handleDeselectAll();
+    setPrefectureSelectionAction({
+      action: 'deleteAll',
+    });
+  };
+
   return (
     <section className="flex flex-col gap-3 sm:gap-3 md:gap-4 lg:gap-6 w-full">
       <PrefectureCheckboxList
@@ -65,7 +76,7 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
           prefectures={prefectures}
           handlePrefectureSelection={handlePrefectureSelection}
         />
-        <DeselectAll />
+        <DeselectAll handleDeselectAllPrefCodes={handleDeselectAllPrefCodes} />
       </div>
     </section>
   );
