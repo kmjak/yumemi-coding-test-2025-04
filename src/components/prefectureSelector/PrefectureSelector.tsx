@@ -7,6 +7,7 @@ import PrefectureCheckboxList from './PrefectureCheckboxList';
 import usePrefecture from '@/hooks/prefecture/usePrefecture';
 import { useSetAtom } from 'jotai';
 import { prefectureSelectionActionAtom } from '@/store/prefectureSelection/prefectureSelectionActionAtom';
+import DeselectAll from './DeselectAll';
 
 /**
  * @description PrefectureSelectorPropsの型定義
@@ -59,10 +60,13 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
         checkedPrefectures={checkedPrefectures}
         handlePrefectureSelection={handlePrefectureSelection}
       />
-      <SearchPrefectureForm
-        prefectures={prefectures}
-        handlePrefectureSelection={handlePrefectureSelection}
-      />
+      <div className="md:flex md:justify-center items-center">
+        <SearchPrefectureForm
+          prefectures={prefectures}
+          handlePrefectureSelection={handlePrefectureSelection}
+        />
+        <DeselectAll />
+      </div>
     </section>
   );
 }
