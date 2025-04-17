@@ -7,7 +7,7 @@ import { generateClient } from 'aws-amplify/api';
  * @property {number[]} checkedPrefectures - 選択された都道府県のID
  * @property {number} prefCode - 都道府県コード
  */
-interface UpdatePrefCodes {
+interface UpdatePrefCodesProps {
   roomId: string;
   checkedPrefectures: number[];
   prefCode: number;
@@ -25,7 +25,7 @@ export default async function updatePrefCodes({
   roomId,
   checkedPrefectures,
   prefCode,
-}: UpdatePrefCodes): Promise<boolean> {
+}: UpdatePrefCodesProps): Promise<boolean> {
   const client = generateClient();
   try {
     const response = await client.graphql({
