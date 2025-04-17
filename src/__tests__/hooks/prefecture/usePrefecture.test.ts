@@ -9,12 +9,24 @@ import usePrefecture from '@/hooks/prefecture/usePrefecture';
  * @author @kmjak
  */
 describe('usePrefecture', () => {
-  // 初期状態のcheckedPrefecturesが空であることを確認する
+  /**
+   * テストケース: 初期状態のcheckedPrefecturesが空であることを確認する
+   *
+   * @expect
+   * checkedPrefecturesが空の配列であること
+   */
   it('初期状態のcheckedPrefecturesが空', () => {
     const { result } = renderHook(() => usePrefecture());
     expect(result.current.checkedPrefectures).toEqual([]);
   });
 
+  /**
+   * テストケース: handleTogglePrefCodeを呼び出すとcheckedPrefecturesに都道府県番号が追加されることを確認する
+   *
+   * @expect
+   * checkedPrefectures: [1]
+   * isChecked: true
+   */
   it('都道府県番号が追加される', () => {
     const { result } = renderHook(() => usePrefecture());
 
@@ -26,6 +38,13 @@ describe('usePrefecture', () => {
     expect(result.current.checkedPrefectures).toEqual([1]);
   });
 
+  /**
+   * テストケース: handleTogglePrefCodeを呼び出すとcheckedPrefecturesから都道府県番号が削除されることを確認する
+   *
+   * @expect
+   * checkedPrefectures: []
+   * isChecked: false
+   */
   it('checkedPrefecturesに入っている都道府県番号を渡すと消される', () => {
     const { result } = renderHook(() => usePrefecture());
 
@@ -42,6 +61,13 @@ describe('usePrefecture', () => {
 
     expect(result.current.checkedPrefectures).not.toEqual([1]);
   });
+
+  /**
+   * テストケース: handleDeselectAllでcheckedPrefecturesから全て取り除く
+   *
+   * @expect
+   * checkedPrefectures: []
+   */
 
   it('handleDeselectAllでcheckedPrefecturesから全て取り除く', () => {
     const { result } = renderHook(() => usePrefecture());
