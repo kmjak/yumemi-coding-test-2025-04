@@ -22,7 +22,7 @@ interface UseAppsyncReturns {
  * @file useAppsync.ts
  * @description Appsyncのカスタムフックをまとめたファイル
  * @returns {
- *  handleCreateRoom: ({roomId}: {prefCode:string}) => Promise<boolean>;
+ *  handleCreateRoom: ({roomId}: {roomId:string}) => Promise<boolean>;
  *  handleUpdatePrefCodes: ({roomId, prefCode, checkedPrefectures}: {roomId:string; prefCode:number; checkedPrefectures:number[]}) => Promise<boolean>;
  *  handleGetPrefCodes: ({roomId}: {roomId:string}) => Promise<number[]>;
  * }
