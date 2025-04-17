@@ -63,6 +63,24 @@ describe('usePrefecture', () => {
   });
 
   /**
+   * テストケース: prefCodeが不正な値の場合
+   *
+   * @expect
+   * checkedPrefectures: []
+   * isChecked: false
+   */
+  it('prefCodeが不正な値の場合、checkedPrefecturesに追加されず、falseが返ってくる', () => {
+    const { result } = renderHook(() => usePrefecture());
+
+    act(() => {
+      const isChecked: boolean = result.current.handleTogglePrefCode({ prefCode: -1 });
+      expect(isChecked).toBe(false);
+    });
+
+    expect(result.current.checkedPrefectures).toEqual([]);
+  });
+
+  /**
    * テストケース: handleDeselectAllでcheckedPrefecturesから全て取り除く
    *
    * @expect
