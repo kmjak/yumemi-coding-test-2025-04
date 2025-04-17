@@ -37,6 +37,11 @@ export default function usePopulationComp(): usePopulationCompReturn {
   }: {
     prefCode: number;
   }): Promise<PopulationCompResponse | undefined> => {
+    // 都道府県コードが不正な場合はundefinedを返す
+    if (isValidPrefCode({ prefCode }) === false) {
+      return undefined;
+    }
+
     try {
       const populationCompResponse: PopulationCompResponse = await getPopulationCompByPrefCode({
         prefCode,
