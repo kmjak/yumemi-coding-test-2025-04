@@ -37,7 +37,6 @@ export default function usePrefecture(): {
 
   const handleDeselectAll = (): void => {
     setCheckedPrefectures([]);
-    return;
   };
 
   return { checkedPrefectures, handleTogglePrefCode, handleDeselectAll };
