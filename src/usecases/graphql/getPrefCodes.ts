@@ -35,7 +35,7 @@ export default async function getPrefCodes({ roomId }: GetPrefCodesProps): Promi
     return prefCodes.filter((prefCode): prefCode is number => prefCode !== null);
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(error.message);
+      throw error;
     } else {
       throw new Error('Unknown error');
     }
