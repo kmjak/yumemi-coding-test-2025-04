@@ -13,6 +13,7 @@ import { Prefecture } from '@/types/models/prefecture/Prefecture';
 import { YearlyPopulationData } from '@/types/models/populationComp/YearlyPopulationData';
 import { ChartData, ChartOptions } from 'chart.js';
 import ChartRender from './ChartRender';
+import { PopulationDataByLabel } from '@/types/models/populationComp/PopulationDataByLabel';
 
 /**
  * @description ChartPropsの型定義
@@ -97,33 +98,45 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
   }, [prefectureSelectionAction]);
 
   // labelsを定義
-  const labels = Object.values(populationByPrefCode)[0]?.[chartMode]?.map(
-    (populationCompItem: YearlyPopulationData) => populationCompItem.year
+  const yearArrays: number[][] = Object.values(populationByPrefCode).map(
+    (population: PopulationDataByLabel) => population[chartMode]?.map((data) => data.year) ?? []
   );
+
+  const commonYears: number[] =
+    yearArrays.length === 0
+      ? []
+      : yearArrays.reduce((acc, years) => {
+          if (acc === null) return years;
+          return acc.filter((year) => years.includes(year));
+        }) ?? [];
+
+  // labelを昇順にする
+  const labels: number[] = commonYears.sort((a, b) => a - b);
 
   // chartDataを定義
   const chartData: ChartData<'line'> = {
     // 横軸のラベル
     labels,
     // 実際のデータ
-    datasets: Object.entries(populationByPrefCode).map(([prefCodeStr, data]) => {
+    datasets: Object.entries(populationByPrefCode).map(([prefCodeStr, populationByPrefecture]) => {
       const prefCode: number = parseInt(prefCodeStr, 10);
-      const populationData: YearlyPopulationData[] = data[chartMode];
+      const populationByMode: YearlyPopulationData[] = populationByPrefecture[chartMode];
       const boundaryYear: number = boundaryYears[prefCode];
+      const populationByYear: Map<number, number> = new Map(
+        populationByMode.map((population) => [population.year, population.value])
+      );
 
       return {
         label: prefectures.find((pref) => pref.prefCode === prefCode)?.prefName,
-        data: populationData.map((populationComp: YearlyPopulationData) => populationComp.value),
+        data: labels.map((year) => populationByYear.get(year) ?? null),
         borderColor: `hsl(${(prefCode * 7) % 360}, 70%, 50%)`,
         backgroundColor: `hsla(${(prefCode * 7) % 360}, 70%, 50%, 0.5)`,
-        pointRadius: populationData.map((populationComp: YearlyPopulationData) =>
-          populationComp.year === boundaryYear ? 3 : 2
+        pointRadius: labels.map((year) => (year === boundaryYear ? 3 : 2)),
+        pointBackgroundColor: labels.map((year) =>
+          year === boundaryYear ? 'white' : `hsl(${(prefCode * 7) % 360}, 70%, 50%)`
         ),
-        pointBackgroundColor: populationData.map((populationComp: YearlyPopulationData) =>
-          populationComp.year === boundaryYear ? 'white' : `hsl(${(prefCode * 7) % 360}, 70%, 50%)`
-        ),
-        pointBorderColor: populationData.map((populationComp: YearlyPopulationData) =>
-          populationComp.year === boundaryYear ? `hsl(${(prefCode * 7) % 360}, 70%, 50%)` : 'white'
+        pointBorderColor: labels.map((year) =>
+          year === boundaryYear ? `hsl(${(prefCode * 7) % 360}, 70%, 50%)` : 'white'
         ),
       };
     }),
