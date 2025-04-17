@@ -2,14 +2,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from '../types/models/graphql/GraphqlSchema';
+import * as APITypes from "../types/models/graphql/GraphqlSchema";
 type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryInput: InputType;
   __generatedQueryOutput: OutputType;
 };
 
-export const getYumemiCodingTest202504 =
-  /* GraphQL */ `query GetYumemiCodingTest202504($roomId: String!) {
+export const getYumemiCodingTest202504 = /* GraphQL */ `query GetYumemiCodingTest202504($roomId: String!) {
   getYumemiCodingTest202504(roomId: $roomId) {
     roomId
     prefCodes
@@ -17,9 +16,9 @@ export const getYumemiCodingTest202504 =
   }
 }
 ` as GeneratedQuery<
-    APITypes.GetYumemiCodingTest202504QueryVariables,
-    APITypes.GetYumemiCodingTest202504Query
-  >;
+  APITypes.GetYumemiCodingTest202504QueryVariables,
+  APITypes.GetYumemiCodingTest202504Query
+>;
 export const listYumemiCodingTest202504s = /* GraphQL */ `query ListYumemiCodingTest202504s(
   $filter: TableYumemiCodingTest202504FilterInput
   $limit: Int
