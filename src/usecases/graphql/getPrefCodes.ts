@@ -32,7 +32,7 @@ export default async function getPrefCodes({ roomId }: GetPrefCodesProps): Promi
       };
     };
     const prefCodes = response.data.getYumemiCodingTest202504.prefCodes;
-    return prefCodes.filter((prefCode) => prefCode !== null) as number[];
+    return prefCodes.filter((prefCode): prefCode is number => prefCode !== null);
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(error.message);
