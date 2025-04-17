@@ -37,7 +37,7 @@ export default async function createRoom({ roomId }: CreateRoomProps): Promise<b
     return true;
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(error.message);
+      throw error;
     } else {
       throw new Error('Unknown error');
     }

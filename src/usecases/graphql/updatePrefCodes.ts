@@ -48,7 +48,7 @@ export default async function updatePrefCodes({
     return true;
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(error.message);
+      throw error;
     } else {
       throw new Error('Unknown error');
     }
