@@ -48,7 +48,7 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
       if (prefectureSelectionAction === undefined) return;
 
       // prefectureSelectionActionからactionとprefCodeを取得
-      const { action, prefCode } = prefectureSelectionAction;
+      const { action, prefCode, prefCodes } = prefectureSelectionAction;
 
       // actionがundefinedの場合は何もしない
       if (action === undefined) return;
@@ -108,6 +108,45 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
         // actionがdeleteAllの場合は、全ての都道府県コードを指定してpopulationByPrefCodeとboundaryYearsから削除
         setPopulationByPrefCode({});
         setBoundaryYears({});
+      } else if (action === 'insertList') {
+        // actionがinsertListの場合は、都道府県コードを指定してpopulationByPrefCodeとboundaryYearsに追加
+
+        // prefCodesがundefinedの場合は何もしない
+        if (prefCodes === undefined) return;
+
+        // populationByPrefCodeとboundaryYearsをPrefCodesの数だけ取得
+        await Promise.all(
+          prefCodes.map(async (prefCode) => {
+            // actionがinsertListの場合は、都道府県コードを指定して人口構成データを取得
+            const populationCompResponse: PopulationCompResponse | undefined =
+              await handleGetPopulationCompByPrefCode({
+                prefCode,
+              });
+
+            // populationCompResponseがundefinedの場合は何もしない
+            if (populationCompResponse === undefined) return;
+
+            // populationCompResponseからboundaryYearとpopulationCompを取得
+            const { boundaryYear, data: populationCompData } = populationCompResponse;
+
+            // boundaryYearとpopulationCompが存在する場合は、都道府県コードを指定してpopulationByPrefCodeとboundaryYearsに追加
+            if (boundaryYear && populationCompData) {
+              // boundaryYearsにboundaryYearを追加
+              setBoundaryYears((prev) => ({ ...prev, [prefCode]: boundaryYear }));
+
+              // populationByPrefCodeにラベルごとの人口構成データを追加
+              setPopulationByPrefCode((prev) => ({
+                ...prev,
+                [prefCode]: {
+                  total: populationCompData[0].data,
+                  young: populationCompData[1].data,
+                  working: populationCompData[2].data,
+                  elderly: populationCompData[3].data,
+                },
+              }));
+            }
+          })
+        );
       }
     };
 

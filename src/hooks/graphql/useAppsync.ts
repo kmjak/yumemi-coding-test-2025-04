@@ -2,6 +2,7 @@
 
 import createRoom from '@/usecases/graphql/createRoom';
 import getPrefCodes from '@/usecases/graphql/getPrefCodes';
+import resetPrefCodes from '@/usecases/graphql/reestPrefCodes';
 import updatePrefCodes from '@/usecases/graphql/updatePrefCodes';
 
 /**
@@ -21,6 +22,7 @@ interface UseAppsyncReturns {
     prefCode: number;
     checkedPrefectures: number[];
   }) => Promise<boolean>;
+  handleResetPrefCodes: ({ roomId }: { roomId: string }) => Promise<boolean>;
   handleGetPrefCodes: ({ roomId }: { roomId: string }) => Promise<number[]>;
 }
 
@@ -30,6 +32,7 @@ interface UseAppsyncReturns {
  * @returns {
  *  handleCreateRoom: ({roomId}: {roomId:string}) => Promise<boolean>;
  *  handleUpdatePrefCodes: ({roomId, prefCode, checkedPrefectures}: {roomId:string; prefCode:number; checkedPrefectures:number[]}) => Promise<boolean>;
+ *  handleResetPrefCodes: ({roomId}: {roomId:string}) => Promise<boolean>;
  *  handleGetPrefCodes: ({roomId}: {roomId:string}) => Promise<number[]>;
  * }
  *
@@ -81,6 +84,23 @@ export default function useAppsync(): UseAppsyncReturns {
   };
 
   /**
+   * @description roomの都道府県番号をリセットする関数
+   * @param {string} roomId - 部屋のID
+   * @returns {Promise<boolean>} - 成功した場合はtrue、失敗した場合はfalse
+   */
+  const handleResetPrefCodes = async ({ roomId }: { roomId: string }): Promise<boolean> => {
+    try {
+      // roomIdをもとに都道府県コードをリセット
+      const isReset = await resetPrefCodes({ roomId });
+      if (!isReset) return false;
+      return true;
+    } catch {
+      // エラーが発生した場合はfalseを返す
+      return false;
+    }
+  };
+
+  /**
    * @description roomの都道府県番号を取得する関数
    * @param {string}
    * @returns {Promise<number[]>} - 都道府県コードの配列
@@ -101,6 +121,7 @@ export default function useAppsync(): UseAppsyncReturns {
   return {
     handleCreateRoom,
     handleUpdatePrefCodes,
+    handleResetPrefCodes,
     handleGetPrefCodes,
   };
 }
