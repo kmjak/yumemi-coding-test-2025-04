@@ -75,14 +75,14 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
    * @description 全てのチェックボックスの状態を外す処理
    * @returns {void}
    */
-  const handleDeselectAllPrefCodes = (): void => {
+  const handleDeselectAllPrefCodes = async (): Promise<void> => {
     handleDeselectAll();
     setPrefectureSelectionAction({
       action: 'deleteAll',
     });
 
     // Appsyncのデータも更新する
-    const isReset = handleResetPrefCodes({
+    const isReset = await handleResetPrefCodes({
       roomId, // TODO: roomIdを引数で受け取るようにする
     });
     if (!isReset) {
