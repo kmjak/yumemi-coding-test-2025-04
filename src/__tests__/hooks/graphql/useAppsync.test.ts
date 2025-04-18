@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import useAppsync from '@/hooks/graphql/useAppsync';
 import getPrefCodes from '@/usecases/graphql/getPrefCodes';
-import resetPrefCodes from '@/usecases/graphql/reestPrefCodes';
+import resetPrefCodes from '@/usecases/graphql/resetPrefCodes';
 import updatePrefCodes from '@/usecases/graphql/updatePrefCodes';
 
 // モックのセットアップ
