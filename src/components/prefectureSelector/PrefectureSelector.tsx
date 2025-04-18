@@ -29,7 +29,7 @@ interface PrefectureSelectorProps {
  * @author @kmjak
  */
 export default function PrefectureSelector({ prefectures }: PrefectureSelectorProps): JSX.Element {
-  const roomId: string = 'kmjak'; // TODO: roomIdを引数で受け取るようにする
+  const roomId: string = 'room1'; // TODO: roomIdを引数で受け取るようにする
   const client = generateClient();
   const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll, handleSetPrefCodes } =
     usePrefecture();
