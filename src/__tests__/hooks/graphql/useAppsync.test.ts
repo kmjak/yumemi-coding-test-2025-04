@@ -6,7 +6,7 @@ import updatePrefCodes from '@/usecases/graphql/updatePrefCodes';
 
 // モックのセットアップ
 jest.mock('@/usecases/graphql/getPrefCodes');
-jest.mock('@/usecases/graphql/reestPrefCodes');
+jest.mock('@/usecases/graphql/resetPrefCodes');
 jest.mock('@/usecases/graphql/updatePrefCodes');
 
 /**
