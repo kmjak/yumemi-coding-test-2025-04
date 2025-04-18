@@ -37,8 +37,10 @@ export default function SearchPrefectureForm({
    */
   const handleSearchSelect = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const matchedPref = prefectures.find((pref) => pref.prefName === searchPrefName);
-    if (matchedPref) {
+    const matchedPref: Prefecture | undefined = prefectures.find(
+      (pref) => pref.prefName === searchPrefName
+    );
+    if (matchedPref !== undefined) {
       handlePrefectureSelection({ prefCode: matchedPref.prefCode });
       setSearchPrefName('');
     } else {
