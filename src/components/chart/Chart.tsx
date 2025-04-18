@@ -14,6 +14,7 @@ import { YearlyPopulationData } from '@/types/models/populationComp/YearlyPopula
 import { ChartData, ChartOptions } from 'chart.js';
 import ChartRender from './ChartRender';
 import { PopulationDataByLabel } from '@/types/models/populationComp/PopulationDataByLabel';
+import { PrefectureSelectionAction } from '@/types/models/prefectureSelection/PrefectureSelectionAction';
 
 /**
  * @description ChartPropsの型定義
@@ -34,11 +35,10 @@ interface ChartProps {
  * @author @kmjak
  */
 export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Element {
-  const prefectureSelectionAction = useAtomValue(prefectureSelectionActionAtom);
   const [populationByPrefCode, setPopulationByPrefCode] = useState<PopulationCompByPrefCodes>({});
   const [boundaryYears, setBoundaryYears] = useState<BoundaryYears>({});
-
   const { handleGetPopulationCompByPrefCode } = usePopulationComp();
+  const prefectureSelectionAction = useAtomValue(prefectureSelectionActionAtom);
 
   // prefectureSelectionActionが変更されたときをトリガーに実行
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
       if (prefectureSelectionAction === undefined) return;
 
       // prefectureSelectionActionからactionとprefCodeを取得
-      const { action, prefCode, prefCodes } = prefectureSelectionAction;
+      const { action, prefCode, prefCodes }: PrefectureSelectionAction = prefectureSelectionAction;
 
       // actionがundefinedの場合は何もしない
       if (action === undefined) return;
@@ -67,7 +67,8 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
         if (populationCompResponse === undefined) return;
 
         // populationCompResponseからboundaryYearとpopulationCompを取得
-        const { boundaryYear, data: populationCompData } = populationCompResponse;
+        const { boundaryYear, data: populationCompData }: PopulationCompResponse =
+          populationCompResponse;
 
         // boundaryYearとpopulationCompが存在する場合は、都道府県コードを指定してpopulationByPrefCodeとboundaryYearsに追加
         if (boundaryYear && populationCompData) {
@@ -127,7 +128,8 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
             if (populationCompResponse === undefined) return;
 
             // populationCompResponseからboundaryYearとpopulationCompを取得
-            const { boundaryYear, data: populationCompData } = populationCompResponse;
+            const { boundaryYear, data: populationCompData }: PopulationCompResponse =
+              populationCompResponse;
 
             // boundaryYearとpopulationCompが存在する場合は、都道府県コードを指定してpopulationByPrefCodeとboundaryYearsに追加
             if (boundaryYear && populationCompData) {
@@ -164,7 +166,7 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
       : yearArrays.reduce((acc, years) => acc.filter((year) => years.includes(year)));
 
   // labelを昇順にする
-  const labels: number[] = commonYears.sort((a, b) => a - b);
+  const labels: number[] = commonYears.sort((left, right) => left - right);
 
   // chartDataを定義
   const chartData: ChartData<'line'> = {

@@ -29,7 +29,7 @@ interface PrefectureSelectorProps {
  * @author @kmjak
  */
 export default function PrefectureSelector({ prefectures }: PrefectureSelectorProps): JSX.Element {
-  const roomId = 'kmjak'; // TODO: roomIdを引数で受け取るようにする
+  const roomId: string = 'kmjak'; // TODO: roomIdを引数で受け取るようにする
   const client = generateClient();
   const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll, handleSetPrefCodes } =
     usePrefecture();
@@ -46,7 +46,7 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
     const isChecked: boolean = handleTogglePrefCode({ prefCode });
 
     // Appsyncのデータも更新する
-    const isAppsyncUpdated = await handleUpdatePrefCodes({
+    const isAppsyncUpdated: boolean = await handleUpdatePrefCodes({
       roomId, // TODO: roomIdを引数で受け取るようにする
       prefCode,
       checkedPrefectures,
@@ -82,10 +82,10 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
     });
 
     // Appsyncのデータも更新する
-    const isReset = await handleResetPrefCodes({
+    const isResetAppsyncByRoomId: boolean = await handleResetPrefCodes({
       roomId, // TODO: roomIdを引数で受け取るようにする
     });
-    if (!isReset) {
+    if (!isResetAppsyncByRoomId) {
       alert('都道府県コードのリセットに失敗しました');
     }
   };
@@ -93,7 +93,7 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
   useEffect(() => {
     // Appsyncのデータを取得する
     const fetchPrefCodes = async () => {
-      const prefCodes = await handleGetPrefCodes({ roomId }); // TODO: roomIdを引数で受け取るようにする
+      const prefCodes: number[] = await handleGetPrefCodes({ roomId }); // TODO: roomIdを引数で受け取るようにする
       handleSetPrefCodes({ prefCodes });
       setPrefectureSelectionAction({
         action: 'insertList',
@@ -112,7 +112,7 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
     const subscription = client.graphql({ query: onUpdateYumemiCodingTest202504 }).subscribe({
       next: ({ data }) => {
         if (data?.onUpdateYumemiCodingTest202504) {
-          const prefCodes = data.onUpdateYumemiCodingTest202504.prefCodes.filter(
+          const prefCodes: number[] = data.onUpdateYumemiCodingTest202504.prefCodes.filter(
             (prefCode): prefCode is number => prefCode !== null
           );
           if (!prefCodes) return;
