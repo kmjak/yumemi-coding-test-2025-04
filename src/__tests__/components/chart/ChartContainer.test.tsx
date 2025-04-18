@@ -17,6 +17,14 @@ const mockPrefectures: Prefecture[] = [
   { prefCode: 1, prefName: '北海道' },
   { prefCode: 2, prefName: '青森県' },
 ];
+
+/**
+ * @file ChartContainer.test.tsx
+ * @description ChartContainerコンポーネントのテスト
+ * @see src/components/chartChartContainer.tsx
+ *
+ * @author @kmjak
+ */
 describe('ChartContainer', () => {
   it('ChartModeSelectorとChartが正しくレンダリングされているか確認', () => {
     render(<ChartContainer prefectures={mockPrefectures} />);
