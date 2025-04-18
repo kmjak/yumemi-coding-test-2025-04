@@ -14,6 +14,7 @@ export default async function Home() {
     );
   } catch (error) {
     if (error instanceof Error) {
+      console.error(error);
       // エラーがErrorインスタンスの場合は、そのままエラーメッセージを返す
       return <div>{error.message}</div>;
     } else {
