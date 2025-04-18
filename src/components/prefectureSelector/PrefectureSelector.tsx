@@ -1,7 +1,7 @@
 'use client';
 
 import { Prefecture } from '@/types/models/prefecture/Prefecture';
-import { JSX } from 'react';
+import { JSX, useEffect } from 'react';
 import SearchPrefectureForm from './SearchPrefectureForm';
 import PrefectureCheckboxList from './PrefectureCheckboxList';
 import usePrefecture from '@/hooks/prefecture/usePrefecture';
@@ -27,8 +27,9 @@ interface PrefectureSelectorProps {
  * @author @kmjak
  */
 export default function PrefectureSelector({ prefectures }: PrefectureSelectorProps): JSX.Element {
-  const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll } = usePrefecture();
-  const { handleUpdatePrefCodes } = useAppsync();
+  const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll, handleSetPrefCodes } =
+    usePrefecture();
+  const { handleUpdatePrefCodes, handleGetPrefCodes } = useAppsync();
   const setPrefectureSelectionAction = useSetAtom(prefectureSelectionActionAtom);
 
   /**
@@ -76,6 +77,21 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
       action: 'deleteAll',
     });
   };
+
+  useEffect(() => {
+    // Appsyncのデータを取得する
+    const fetchPrefCodes = async () => {
+      console.log('Appsyncからデータを取得');
+      const prefCodes = await handleGetPrefCodes({ roomId: 'kmjak' }); // TODO: roomIdを引数で受け取るようにする
+      handleSetPrefCodes({ prefCodes });
+    };
+
+    fetchPrefCodes();
+    return () => {
+      // コンポーネントがアンマウントされたときに、チェックボックスの状態をリセットする
+      handleDeselectAll();
+    };
+  }, []);
 
   return (
     <section className="flex flex-col gap-3 sm:gap-3 md:gap-4 lg:gap-6 w-full">
