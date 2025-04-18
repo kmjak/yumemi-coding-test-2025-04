@@ -21,7 +21,7 @@ const mockPrefectures: Prefecture[] = [
 /**
  * @file ChartContainer.test.tsx
  * @description ChartContainerコンポーネントのテスト
- * @see src/components/chartChartContainer.tsx
+ * @see src/components/chart/ChartContainer.tsx
  *
  * @author @kmjak
  */
