@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   // このサイトの説明
   description:
     '都道府県別の総人口推移を視覚的に比較できるインタラクティブなアプリケーションです。地域ごとの人口変化を年代別に追跡し、日本の人口動態の全体像を把握できます。',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 // AWS Amplifyの設定
