@@ -4,15 +4,7 @@ import { Prefecture } from '@/types/models/prefecture/Prefecture';
 import getPrefectures from '@/usecases/prefecture/getPrefectures';
 
 export default async function Home() {
-  let conf;
   try {
-    const res = await fetch('http://localhost:3000/api/debug', {
-      method: 'GET',
-      cache: 'no-store',
-    });
-
-    conf = await res.json();
-
     const prefectures: Prefecture[] = await getPrefectures();
     return (
       <main>
@@ -22,17 +14,10 @@ export default async function Home() {
     );
   } catch (error) {
     if (error instanceof Error) {
-      // throw error;
       return (
         <main>
-          <h1>エラーが発生しました</h1>
+          <h1>都道府県情報の取得に失敗しました</h1>
           <p>{error.message}</p>
-          {conf && (
-            <div>
-              <h2>デバッグ情報</h2>
-              <pre>{JSON.stringify(conf, null, 2)}</pre>
-            </div>
-          )}
         </main>
       );
     } else {
