@@ -8,6 +8,7 @@ import usePrefecture from '@/hooks/prefecture/usePrefecture';
 import { useSetAtom } from 'jotai';
 import { prefectureSelectionActionAtom } from '@/store/prefectureSelection/prefectureSelectionActionAtom';
 import DeselectAll from './DeselectAll';
+import useAppsync from '@/hooks/graphql/useAppsync';
 
 /**
  * @description PrefectureSelectorPropsの型定義
@@ -27,16 +28,28 @@ interface PrefectureSelectorProps {
  */
 export default function PrefectureSelector({ prefectures }: PrefectureSelectorProps): JSX.Element {
   const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll } = usePrefecture();
+  const { handleUpdatePrefCodes } = useAppsync();
   const setPrefectureSelectionAction = useSetAtom(prefectureSelectionActionAtom);
 
   /**
-   * @description 都道府県番号を受け取り、チェックボックスの状態のオンオフを切り替える処理+prefectureSelectionActionにどんなアクションをしたかをセットする
+   * @description チェックボックスの状態のオンオフを切り替える処理+prefectureSelectionActionにアクションをセットする+Appsyncのデータを更新する
    * @param {number} prefCode - 都道府県コード
    * @returns {void}
    */
   const handlePrefectureSelection = async ({ prefCode }: { prefCode: number }): Promise<void> => {
     // チェックボックスの状態を切り替え、checkboxにチェックを入れたのか外したのかを取得(true:チェックを入れた, false:チェックを外した)
     const isChecked: boolean = handleTogglePrefCode({ prefCode });
+
+    // Appsyncのデータも更新する
+    const isAppsyncUpdated = await handleUpdatePrefCodes({
+      roomId: 'kmjak', // TODO: roomIdを引数で受け取るようにする
+      prefCode,
+      checkedPrefectures,
+    });
+
+    if (!isAppsyncUpdated) {
+      handleTogglePrefCode({ prefCode });
+    }
 
     if (isChecked) {
       // checkboxにチェックが入った場合、actionをinsertにセット
