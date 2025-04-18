@@ -17,9 +17,11 @@ const mockPrefectures: Prefecture[] = [
 
 describe('Chart', () => {
   it('Chartコンポーネントが正しくレンダリングされる', () => {
+    /**
+     * テストケース: Chartコンポーネントが正しくレンダリングされる
+     */
     render(<Chart chartMode="total" prefectures={mockPrefectures} />);
 
-    // チャートが正しくレンダリングされているか確認
     expect(screen.getByText('都道府県を選択してください')).toBeInTheDocument();
   });
 });

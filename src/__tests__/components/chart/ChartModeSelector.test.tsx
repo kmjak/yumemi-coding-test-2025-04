@@ -4,9 +4,6 @@ import { fireEvent, render, screen } from '@testing-library/react';
 describe('ChartModeSelector', () => {
   /**
    * テストケース: ChartModeSelectorが正しくレンダリングされているか確認
-   *
-   * @expect
-   * 正しくレンダリングされる
    */
   it('正しくレンダリングされるか確認', () => {
     const setChartMode = jest.fn();
@@ -16,9 +13,6 @@ describe('ChartModeSelector', () => {
 
   /**
    * テストケース: モードを選択した時にsetChartModeが押され、'working'が渡されるか確認
-   *
-   * @expect
-   * setChartModeが呼ばれ、'working'が渡される
    */
   it('モードを選択した時にsetChartModeが押された時', () => {
     const setChartMode = jest.fn();
