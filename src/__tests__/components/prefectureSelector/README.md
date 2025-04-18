@@ -1,0 +1,1 @@
+このディレクトリはprefectureSelectorに関するcomponentsのテストコードを格納するディレクトリ
