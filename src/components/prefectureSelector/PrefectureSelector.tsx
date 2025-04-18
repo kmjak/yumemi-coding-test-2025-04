@@ -33,7 +33,7 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
   const client = generateClient();
   const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll, handleSetPrefCodes } =
     usePrefecture();
-  const { handleUpdatePrefCodes, handleGetPrefCodes } = useAppsync();
+  const { handleUpdatePrefCodes, handleGetPrefCodes, handleResetPrefCodes } = useAppsync();
   const setPrefectureSelectionAction = useSetAtom(prefectureSelectionActionAtom);
 
   /**
@@ -80,6 +80,14 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
     setPrefectureSelectionAction({
       action: 'deleteAll',
     });
+
+    // Appsyncのデータも更新する
+    const isReset = handleResetPrefCodes({
+      roomId, // TODO: roomIdを引数で受け取るようにする
+    });
+    if (!isReset) {
+      alert('都道府県コードのリセットに失敗しました');
+    }
   };
 
   useEffect(() => {
