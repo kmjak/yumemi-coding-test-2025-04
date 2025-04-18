@@ -108,7 +108,7 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
         // actionがdeleteAllの場合は、全ての都道府県コードを指定してpopulationByPrefCodeとboundaryYearsから削除
         setPopulationByPrefCode({});
         setBoundaryYears({});
-      } else if (action == 'insertList') {
+      } else if (action === 'insertList') {
         // actionがinsertListの場合は、都道府県コードを指定してpopulationByPrefCodeとboundaryYearsに追加
 
         // prefCodesがundefinedの場合は何もしない
