@@ -9,6 +9,8 @@ import { useSetAtom } from 'jotai';
 import { prefectureSelectionActionAtom } from '@/store/prefectureSelection/prefectureSelectionActionAtom';
 import DeselectAll from './DeselectAll';
 import useAppsync from '@/hooks/graphql/useAppsync';
+import { generateClient } from 'aws-amplify/api';
+import { onUpdateYumemiCodingTest202504 } from '@/graphql/subscriptions';
 
 /**
  * @description PrefectureSelectorPropsの型定義
@@ -28,6 +30,7 @@ interface PrefectureSelectorProps {
  */
 export default function PrefectureSelector({ prefectures }: PrefectureSelectorProps): JSX.Element {
   const roomId = 'kmjak'; // TODO: roomIdを引数で受け取るようにする
+  const client = generateClient();
   const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll, handleSetPrefCodes } =
     usePrefecture();
   const { handleUpdatePrefCodes, handleGetPrefCodes } = useAppsync();
@@ -96,6 +99,31 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
       handleDeselectAll();
     };
   }, [roomId]);
+
+  useEffect(() => {
+    const subscription = client.graphql({ query: onUpdateYumemiCodingTest202504 }).subscribe({
+      next: ({ data }) => {
+        if (data?.onUpdateYumemiCodingTest202504) {
+          const prefCodes = data.onUpdateYumemiCodingTest202504.prefCodes.filter(
+            (prefCode): prefCode is number => prefCode !== null
+          );
+          if (!prefCodes) return;
+          handleSetPrefCodes({
+            prefCodes,
+          });
+
+          setPrefectureSelectionAction({
+            action: 'insertList',
+            prefCodes,
+          });
+        }
+      },
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [client]);
 
   return (
     <section className="flex flex-col gap-3 sm:gap-3 md:gap-4 lg:gap-6 w-full">
