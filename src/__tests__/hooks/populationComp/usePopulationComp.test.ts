@@ -65,12 +65,12 @@ describe('usePopulationComp', () => {
   });
 
   /**
-   * テストケース: handleGetPopulationCompByPrefCodeで不正な都道府県コードを渡すとundefinedが返ることを確認する
+   * テストケース: prefCodeが不正な値の場合undefinedが返ることを確認する
    *
    * @expect
    * populationComp: undefined
    */
-  it('handleGetPopulationCompByPrefCodeからundefinedが返る', async () => {
+  it('prefCodeが不正な値の場合undefinedが返る', async () => {
     mockedGetPopulationCompByPrefCode.mockResolvedValue(undefined);
     const { result } = renderHook(() => usePopulationComp());
     await act(async () => {
@@ -86,7 +86,7 @@ describe('usePopulationComp', () => {
    * @expect
    * populationComp: undefined
    */
-  it('handleGetPopulationCompByPrefCodeからundefinedが返る', async () => {
+  it('handleGetPopulationCompByPrefCodeでエラーが発生した場合、undefinedが返る', async () => {
     mockedGetPopulationCompByPrefCode.mockRejectedValue(new Error('Error'));
     const { result } = renderHook(() => usePopulationComp());
     await act(async () => {
