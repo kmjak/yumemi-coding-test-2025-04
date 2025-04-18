@@ -47,7 +47,7 @@ const populationCompResponse: PopulationCompResponse = {
  *
  * @author @kmjak
  */
-describe('usePrefecture', () => {
+describe('usePopulationComp', () => {
   /**
    * テストケース: handleGetPopulationCompByPrefCodeで人口構成データを取得できることを確認する
    *
