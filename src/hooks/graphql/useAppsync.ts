@@ -4,6 +4,12 @@ import createRoom from '@/usecases/graphql/createRoom';
 import getPrefCodes from '@/usecases/graphql/getPrefCodes';
 import updatePrefCodes from '@/usecases/graphql/updatePrefCodes';
 
+/**
+ * @description useAppsyncの戻り値の型定義
+ * @property {function} handleCreateRoom - roomを作成する関数
+ * @property {function} handleUpdatePrefCodes - roomの都道府県番号を更新する関数
+ * @property {function} handleGetPrefCodes - roomの都道府県番号を取得する関数
+ */
 interface UseAppsyncReturns {
   handleCreateRoom: ({ roomId }: { roomId: string }) => Promise<boolean>;
   handleUpdatePrefCodes: ({
