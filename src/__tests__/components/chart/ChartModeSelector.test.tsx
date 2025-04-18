@@ -14,7 +14,7 @@ describe('ChartModeSelector', () => {
   /**
    * テストケース: モードを選択した時にsetChartModeが押され、'working'が渡されるか確認
    */
-  it('モードを選択した時にsetChartModeが押された時', () => {
+  it('setChartModeが期待通りに動くか', () => {
     const setChartMode = jest.fn();
     render(<ChartModeSelector setChartMode={setChartMode} />);
 
