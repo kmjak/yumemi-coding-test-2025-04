@@ -2,6 +2,8 @@
 
 import { apiConf } from '@/conf/api/apiConf';
 import { apiPath } from '@/conf/api/apiPath';
+import { ApiConf } from '@/types/conf/api/ApiConf';
+import { ApiPath } from '@/types/conf/api/ApiPath';
 import { Prefecture } from '@/types/models/prefecture/Prefecture';
 
 /**
@@ -16,7 +18,7 @@ import { Prefecture } from '@/types/models/prefecture/Prefecture';
 export default async function fetchPrefectures(): Promise<Prefecture[]> {
   try {
     // APIの設定を取得
-    const { API_ENDPOINT, X_API_KEY } = apiConf;
+    const { API_ENDPOINT, X_API_KEY }: ApiConf = apiConf;
 
     // API_ENDPOINTが空の場合はエラーを投げる
     if (API_ENDPOINT === '') {
@@ -29,7 +31,7 @@ export default async function fetchPrefectures(): Promise<Prefecture[]> {
     }
 
     // APIのパスを取得
-    const { PREFECTURES: PREFECTURES_PATH } = apiPath;
+    const { PREFECTURES: PREFECTURES_PATH }: ApiPath = apiPath;
 
     //PREFECTURES_PATHが空の場合はエラーを投げる
     if (PREFECTURES_PATH === '') {
@@ -40,7 +42,7 @@ export default async function fetchPrefectures(): Promise<Prefecture[]> {
     const apiUrl: string = `${API_ENDPOINT}${PREFECTURES_PATH}`;
 
     // APIの都道府県一覧を取得する
-    const response = await fetch(apiUrl, {
+    const response: Response = await fetch(apiUrl, {
       // メソッドはGET
       method: 'GET',
 
