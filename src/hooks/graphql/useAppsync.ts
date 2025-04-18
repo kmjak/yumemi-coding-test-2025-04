@@ -1,7 +1,7 @@
 'use client';
 
 import getPrefCodes from '@/usecases/graphql/getPrefCodes';
-import resetPrefCodes from '@/usecases/graphql/reestPrefCodes';
+import resetPrefCodes from '@/usecases/graphql/resetPrefCodes';
 import updatePrefCodes from '@/usecases/graphql/updatePrefCodes';
 
 /**
