@@ -1,4 +1,4 @@
-// app/api/example/route.ts
+export const runtime = 'nodejs';
 
 import { apiConf } from '@/conf/api/apiConf';
 import { apiPath } from '@/conf/api/apiPath';
