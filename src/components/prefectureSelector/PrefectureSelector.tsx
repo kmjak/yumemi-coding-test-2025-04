@@ -27,6 +27,7 @@ interface PrefectureSelectorProps {
  * @author @kmjak
  */
 export default function PrefectureSelector({ prefectures }: PrefectureSelectorProps): JSX.Element {
+  const roomId = 'kmjak'; // TODO: roomIdを引数で受け取るようにする
   const { checkedPrefectures, handleTogglePrefCode, handleDeselectAll, handleSetPrefCodes } =
     usePrefecture();
   const { handleUpdatePrefCodes, handleGetPrefCodes } = useAppsync();
@@ -43,7 +44,7 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
 
     // Appsyncのデータも更新する
     const isAppsyncUpdated = await handleUpdatePrefCodes({
-      roomId: 'kmjak', // TODO: roomIdを引数で受け取るようにする
+      roomId, // TODO: roomIdを引数で受け取るようにする
       prefCode,
       checkedPrefectures,
     });
@@ -81,9 +82,12 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
   useEffect(() => {
     // Appsyncのデータを取得する
     const fetchPrefCodes = async () => {
-      console.log('Appsyncからデータを取得');
-      const prefCodes = await handleGetPrefCodes({ roomId: 'kmjak' }); // TODO: roomIdを引数で受け取るようにする
+      const prefCodes = await handleGetPrefCodes({ roomId }); // TODO: roomIdを引数で受け取るようにする
       handleSetPrefCodes({ prefCodes });
+      setPrefectureSelectionAction({
+        action: 'insertList',
+        prefCodes,
+      });
     };
 
     fetchPrefCodes();
@@ -91,7 +95,7 @@ export default function PrefectureSelector({ prefectures }: PrefectureSelectorPr
       // コンポーネントがアンマウントされたときに、チェックボックスの状態をリセットする
       handleDeselectAll();
     };
-  }, []);
+  }, [roomId]);
 
   return (
     <section className="flex flex-col gap-3 sm:gap-3 md:gap-4 lg:gap-6 w-full">
