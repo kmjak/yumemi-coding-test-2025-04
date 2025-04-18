@@ -47,7 +47,11 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <ConfigureAmplifyClientSide amplifyConf={amplifyConf} />
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-white`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
