@@ -5,6 +5,9 @@ import { Prefecture } from '@/types/models/prefecture/Prefecture';
 /**
  * @file Chart.test.tsx
  * @description Chartコンポーネントのテストコード
+ * @see src/components/chart/Chart.tsx
+ *
+ * @author @kmjak
  */
 
 const mockPrefectures: Prefecture[] = [
