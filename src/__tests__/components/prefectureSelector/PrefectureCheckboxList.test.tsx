@@ -17,11 +17,11 @@ const checkedPrefectures: number[] = [1, 2];
  *
  * @author @kmjak
  */
-describe('DeselectAll', () => {
+describe('PrefectureCheckboxList', () => {
   /**
-   * テストケース: DeselectAllコンポーネントが正しくレンダリングされるか
+   * テストケース: PrefectureCheckboxListコンポーネントが正しくレンダリングされるか
    */
-  it('DeselectAllが正しくレンダリングされるか', () => {
+  it('PrefectureCheckboxListが正しくレンダリングされるか', () => {
     render(
       <PrefectureCheckboxList
         prefectures={mockPrefectures}
