@@ -112,6 +112,8 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
       } else if (action === 'insertList') {
         // actionがinsertListの場合は、都道府県コードを指定してpopulationByPrefCodeとboundaryYearsに追加
 
+        setPopulationByPrefCode({});
+        setBoundaryYears({});
         // prefCodesがundefinedの場合は何もしない
         if (prefCodes === undefined) return;
 
