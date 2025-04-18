@@ -1,6 +1,5 @@
 'use client';
 
-import createRoom from '@/usecases/graphql/createRoom';
 import getPrefCodes from '@/usecases/graphql/getPrefCodes';
 import resetPrefCodes from '@/usecases/graphql/reestPrefCodes';
 import updatePrefCodes from '@/usecases/graphql/updatePrefCodes';
@@ -12,7 +11,6 @@ import updatePrefCodes from '@/usecases/graphql/updatePrefCodes';
  * @property {function} handleGetPrefCodes - roomの都道府県番号を取得する関数
  */
 interface UseAppsyncReturns {
-  handleCreateRoom: ({ roomId }: { roomId: string }) => Promise<boolean>;
   handleUpdatePrefCodes: ({
     roomId,
     prefCode,
@@ -30,7 +28,6 @@ interface UseAppsyncReturns {
  * @file useAppsync.ts
  * @description Appsyncのカスタムフックをまとめたファイル
  * @returns {
- *  handleCreateRoom: ({roomId}: {roomId:string}) => Promise<boolean>;
  *  handleUpdatePrefCodes: ({roomId, prefCode, checkedPrefectures}: {roomId:string; prefCode:number; checkedPrefectures:number[]}) => Promise<boolean>;
  *  handleResetPrefCodes: ({roomId}: {roomId:string}) => Promise<boolean>;
  *  handleGetPrefCodes: ({roomId}: {roomId:string}) => Promise<number[]>;
@@ -39,23 +36,6 @@ interface UseAppsyncReturns {
  * @author @kmjak
  */
 export default function useAppsync(): UseAppsyncReturns {
-  /**
-   * @description roomを作成する関数
-   * @param {string}
-   * @returns {Promise<boolean>} - 成功した場合はtrue、失敗した場合はfalse
-   */
-  const handleCreateRoom = async ({ roomId }: { roomId: string }): Promise<boolean> => {
-    try {
-      // roomIdをもとに部屋を作成
-      const isCreated: boolean = await createRoom({ roomId });
-      // 成功した場合はtrueを返す
-      return isCreated;
-    } catch {
-      // エラーが発生した場合はfalseを返す
-      return false;
-    }
-  };
-
   /**
    * @description roomの都道府県番号を更新する関数
    * @param {string} roomId - 部屋のID
@@ -119,7 +99,6 @@ export default function useAppsync(): UseAppsyncReturns {
   };
 
   return {
-    handleCreateRoom,
     handleUpdatePrefCodes,
     handleResetPrefCodes,
     handleGetPrefCodes,
