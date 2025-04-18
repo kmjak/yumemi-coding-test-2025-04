@@ -7,6 +7,7 @@
  */
 
 export interface PrefectureSelectionAction {
-  action: 'insert' | 'delete' | 'deleteAll';
+  action: 'insert' | 'delete' | 'deleteAll' | 'insertList';
   prefCode?: number;
+  prefCodes?: number[];
 }
