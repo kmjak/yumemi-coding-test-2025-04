@@ -56,7 +56,7 @@ export default function ChartRender({
   }
 
   return (
-    <div className="max-w-5xl h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px] border border-gray-300 rounded-lg shadow-md p-2 md:p-4 mx-auto">
+    <div className="max-w-5xl h-[400px] lg:h-[500px] border border-gray-300 rounded-lg shadow-md p-2 md:p-4 mx-auto">
       <Line data={chartData} options={chartOptions} />
     </div>
   );
