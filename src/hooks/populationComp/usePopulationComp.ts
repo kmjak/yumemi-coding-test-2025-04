@@ -13,12 +13,12 @@ import isValidPrefCode from '@/utils/prefecture/isValidPrefCode';
  */
 
 /**
- * @interface usePopulationCompReturn
+ * @interface UsePopulationCompReturn
  * @description usePopulationCompの戻り値の型
  * @property {function} handleGetPopulationCompByPrefCode - 都道府県コードを指定して、人口構成の情報を取得するハンドラー
  *
  */
-interface usePopulationCompReturn {
+interface UsePopulationCompReturn {
   handleGetPopulationCompByPrefCode: ({
     prefCode,
   }: {
@@ -26,7 +26,7 @@ interface usePopulationCompReturn {
   }) => Promise<PopulationCompResponse | undefined>;
 }
 
-export default function usePopulationComp(): usePopulationCompReturn {
+export default function usePopulationComp(): UsePopulationCompReturn {
   /**
    * 都道府県コードを指定して、人口構成の情報を取得するハンドラー
    * @param prefCode 都道府県コード

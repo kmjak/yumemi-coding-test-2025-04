@@ -3,6 +3,13 @@
 import isValidPrefCode from '@/utils/prefecture/isValidPrefCode';
 import { useState } from 'react';
 
+interface UsePrefectureReturn {
+  checkedPrefectures: number[];
+  handleTogglePrefCode: ({ prefCode }: { prefCode: number }) => boolean;
+  handleDeselectAll: () => void;
+  handleSetPrefCodes: ({ prefCodes }: { prefCodes: number[] }) => void;
+}
+
 /**
  * @file usePrefecture.ts
  * @description 都道府県に関するhandlerをまとめたカスタムフック
@@ -16,12 +23,7 @@ import { useState } from 'react';
  * @author @kmjak
  */
 
-export default function usePrefecture(): {
-  checkedPrefectures: number[];
-  handleTogglePrefCode: ({ prefCode }: { prefCode: number }) => boolean;
-  handleDeselectAll: () => void;
-  handleSetPrefCodes: ({ prefCodes }: { prefCodes: number[] }) => void;
-} {
+export default function usePrefecture(): UsePrefectureReturn {
   const [checkedPrefectures, setCheckedPrefectures] = useState<number[]>([]);
 
   /**

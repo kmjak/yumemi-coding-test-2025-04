@@ -91,7 +91,7 @@ export default function useAppsync(): UseAppsyncReturns {
   const handleResetPrefCodes = async ({ roomId }: { roomId: string }): Promise<boolean> => {
     try {
       // roomIdをもとに都道府県コードをリセット
-      const isReset = await resetPrefCodes({ roomId });
+      const isReset: boolean = await resetPrefCodes({ roomId });
       if (!isReset) return false;
       return true;
     } catch {
