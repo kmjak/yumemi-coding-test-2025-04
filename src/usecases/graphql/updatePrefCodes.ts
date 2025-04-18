@@ -27,7 +27,7 @@ export default async function updatePrefCodes({
   prefCode,
 }: UpdatePrefCodesProps): Promise<boolean> {
   const client = generateClient();
-  const prefCodes = checkedPrefectures.includes(prefCode)
+  const prefCodes: number[] = checkedPrefectures.includes(prefCode)
     ? checkedPrefectures.filter((code) => code !== prefCode)
     : [...checkedPrefectures, prefCode];
 

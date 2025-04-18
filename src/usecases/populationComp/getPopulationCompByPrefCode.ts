@@ -2,6 +2,14 @@ import { envConf } from '@/conf/env/envConf';
 import { PopulationCompResponse } from '@/types/models/populationComp/PopulationCompResponse';
 
 /**
+ * @description getPopulationCompByPrefCodeの引数の型
+ * @property {number} prefCode - 都道府県コード
+ */
+interface GetPopulationCompByPrefCodeProps {
+  prefCode: number;
+}
+
+/**
  * @file getPopulationCompByPrefCode.ts
  * @exports getPopulationCompByPrefCode
  * @description 都道府県コードを指定して、人口構成の情報を取得する関数
@@ -13,9 +21,7 @@ import { PopulationCompResponse } from '@/types/models/populationComp/Population
 
 export default async function getPopulationCompByPrefCode({
   prefCode,
-}: {
-  prefCode: number;
-}): Promise<PopulationCompResponse> {
+}: GetPopulationCompByPrefCodeProps): Promise<PopulationCompResponse> {
   try {
     // HOST_URLを取得
     const { HOST_URL } = envConf;

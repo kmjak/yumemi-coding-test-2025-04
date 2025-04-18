@@ -24,7 +24,7 @@ export default async function getPrefectures(): Promise<Prefecture[]> {
     const apiRouterUrl: string = `${HOST_URL}/api/v1/prefecture/list`;
 
     // APIの都道府県一覧を取得する
-    const response = await fetch(apiRouterUrl, {
+    const response: Response = await fetch(apiRouterUrl, {
       // メソッドはGET
       method: 'GET',
 
