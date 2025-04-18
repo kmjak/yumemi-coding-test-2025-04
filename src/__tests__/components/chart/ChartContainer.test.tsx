@@ -26,6 +26,12 @@ const mockPrefectures: Prefecture[] = [
  * @author @kmjak
  */
 describe('ChartContainer', () => {
+  /**
+   * テストケース: ChartModeSelectorとChartが正しくレンダリングされているか確認
+   *
+   * @expect
+   * ChartModeSelectorとChartが正しくレンダリングされている
+   */
   it('ChartModeSelectorとChartが正しくレンダリングされているか確認', () => {
     render(<ChartContainer prefectures={mockPrefectures} />);
 
