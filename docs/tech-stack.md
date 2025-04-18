@@ -46,4 +46,4 @@
 
 ## パフォーマンス測定
 
-- **LightHouse**
+- **Lighthouse**
