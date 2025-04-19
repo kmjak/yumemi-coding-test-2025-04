@@ -34,7 +34,9 @@ export default async function getPrefectures(): Promise<Prefecture[]> {
 
     // レスポンスがOKでない場合はエラーを投げる
     if (!response.ok) {
-      throw new Error('Failed to fetch prefectures');
+      throw new Error(
+        `Failed to fetch prefectures: ${response.status} ${response.statusText}  url: ${apiRouterUrl}`
+      );
     }
 
     // レスポンスをJSON形式で取得

@@ -110,6 +110,7 @@ export default function Chart({ chartMode, prefectures }: ChartProps): JSX.Eleme
         setPopulationByPrefCode({});
         setBoundaryYears({});
       } else if (action === 'insertList') {
+
         // prefCodesがundefinedの場合はpopulationByPrefCodeとboundaryYearsを空にする
         if (prefCodes === undefined) {
           setPopulationByPrefCode({});
