@@ -155,9 +155,9 @@ npm run dev
 
 注意: すでに3000番ポートが使用されている場合3001番が使用されます。
 
-## [🔗 デプロイ](https://main.d8adpzg0m7kgj.amplifyapp.com/)
+## 🔗 デプロイ（現在停止済み）
 
-デプロイ先: https://main.d8adpzg0m7kgj.amplifyapp.com/
+デプロイ先: 現在停止済み
 
 デプロイ方法: Amazon Web Serviceの Amplifyを使用しています
 
